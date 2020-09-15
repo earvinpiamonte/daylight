@@ -1,5 +1,57 @@
 /* Sun's up, I don't really wanna fight the daylight */
+:root {
+  --light: #f7f7f7;
+  --dark: #444;
+  --radius: 4px;
+
+  --foreground: var(--dark);
+  --background: var(--light);
+}
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+.container {
+  max-width: 576px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.box {
+  border: 1px solid var(--foreground);
+  border-radius: var(--radius);
+  padding: 1rem;
+  width: 100%;
+}
+
+.mb-1 {
+  margin-bottom: 1rem;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.button {
+  padding: 0.25rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  box-shadow: none !important;
+  border-radius: var(--radius);
+  background-color: var(--background);
+  color: var(--foreground);
+  border-width: 1px;
 }

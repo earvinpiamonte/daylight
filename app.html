@@ -3,9 +3,39 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="app.css" />
     <title>Daylight - Bad luck, I don't wanna be home at midnight.</title>
   </head>
   <body>
-    <p>I&apos;m not laying in bed with a fucked up</p>
+    <main>
+      <section class="section">
+        <div class="container">
+          <div class="box">
+            <h1 class="mb-1">
+              Good day, <span class="app-user"></span
+              ><!-- /.app-user -->
+            </h1>
+            <div class="mb-1">
+              <textarea
+                name="content"
+                id="app-content"
+                rows="20"
+                class="box"
+              ></textarea
+              ><!-- /#app-content -->
+            </div>
+            <!-- /.mb-1 -->
+            <div class="mb-1">
+              <button class="button copy-to-clipboard">Copy to clipoard</button>
+            </div>
+            <!-- /.mb-1 -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.container -->
+      </section>
+      <!-- /.section -->
+    </main>
+    <script src="app.js"></script>
   </body>
 </html>
