@@ -14,7 +14,7 @@ function loadEventListeners() {
   $copyToClipboard.addEventListener("click", function () {
     const notes = document.querySelector("#app-notes").value;
 
-    copyToClipboard(notes, function () {
+    copyToClipboard(function () {
       console.log("Copied!");
     });
   });
@@ -50,24 +50,14 @@ function newLine(multiplier = 1) {
   return newLine;
 }
 
-function copyToClipboard(textToCopy, callback) {
-  let temporaryInput = document.createElement("input");
+function copyToClipboard(callback) {
+  const $notes = document.querySelector("#app-notes");
 
-  temporaryInput.value = textToCopy;
-
-  temporaryInput.setAttribute("readonly", "");
-
-  temporaryInput.style = { display: "none" };
-
-  document.body.appendChild(temporaryInput);
-
-  temporaryInput.select();
+  $notes.select();
 
   document.execCommand("copy");
 
-  document.body.removeChild(temporaryInput);
-
-  temporaryInput = undefined;
+  $notes.blur();
 
   if (typeof callback == "function") {
     callback();
