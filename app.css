@@ -3,6 +3,7 @@
   --light: #f7f7f7;
   --dark: #444;
   --radius: 4px;
+  --font-family: "Courier New", Courier, monospace;
 
   --foreground: var(--dark);
   --background: var(--light);
@@ -17,6 +18,14 @@
 html {
   background-color: var(--background);
   color: var(--foreground);
+}
+
+body {
+  font-family: var(--font-family);
+}
+
+button {
+  font-family: var(--font-family);
 }
 
 .container {
@@ -41,6 +50,10 @@ html {
   margin-bottom: 1rem;
 }
 
+.mb-2 {
+  margin-bottom: 1.5rem;
+}
+
 textarea {
   resize: vertical;
 }
@@ -54,4 +67,24 @@ textarea {
   background-color: var(--background);
   color: var(--foreground);
   border-width: 1px;
+}
+
+label {
+  font-weight: bold;
+  display: inline-block;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+label > input[type="checkbox"] {
+  vertical-align: middle;
+}
+
+p {
+  margin-bottom: 0.5rem;
+  line-height: 1rem;
+}
+
+.text-smaller {
+  font-size: 85%;
 }
