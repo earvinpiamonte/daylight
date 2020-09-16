@@ -4,17 +4,17 @@
   console.info("I'm not laying in bed with a fucked up head");
 
   loadUserInfo();
-  loadContent();
+  restoreOptions();
   loadEventListeners();
 })();
 
 function loadEventListeners() {
-  const $copyToClipboard = document.querySelector(".copy-to-clipboard");
+  const $copyToClipboard = document.querySelector(".app-copy-to-clipboard");
 
   $copyToClipboard.addEventListener("click", function () {
-    const content = document.querySelector("#app-content").value;
+    const notes = document.querySelector("#app-notes").value;
 
-    copyToClipboard(content, function () {
+    copyToClipboard(notes, function () {
       console.log("Copied!");
     });
   });
@@ -27,8 +27,8 @@ function loadUserInfo() {
   });
 }
 
-function loadContent() {
-  document.querySelector("#app-content").value =
+function loadNotes() {
+  document.querySelector("#app-notes").value =
     getCurrentFullDate() + newLine(2);
 }
 
@@ -41,10 +41,10 @@ function getCurrentFullDate() {
   return currentDate;
 }
 
-function newLine($multiplier = 1) {
+function newLine(multiplier = 1) {
   let newLine = "";
 
-  for (let index = 0; index < $multiplier; index++) {
+  for (let index = 0; index < multiplier; index++) {
     newLine = newLine + "\n";
   }
   return newLine;
@@ -72,4 +72,23 @@ function copyToClipboard(textToCopy, callback) {
   if (typeof callback == "function") {
     callback();
   }
+}
+
+function restoreOptions() {
+  const $notes = document.querySelector("#app-notes");
+
+  chromeGetData("notes", (data) => {
+    $notes.value = data;
+  });
+}
+
+function chromeGetData(key, callback) {
+  chrome.storage.sync.get(key, function (result) {
+    let data = null;
+    if (result[key]) {
+      data = JSON.parse(result[key]);
+    }
+
+    callback(data);
+  });
 }

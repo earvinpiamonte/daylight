@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="app.css" />
+    <title>Daylight | Options</title>
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <div class="box">
+          <h1>Options</h1>
+          <form>
+            <div class="mb-1">
+              <label for="app-notes">Template</label>
+              <p class="text-smaller">
+                Every 12 AM, your notes will reset to whatever you put here in
+                the template.
+              </p>
+              <textarea
+                name="app-notes"
+                id="app-notes"
+                rows="20"
+                class="box"
+                placeholder="Write something here"
+              ></textarea
+              ><!-- /#app-notes.box -->
+            </div>
+            <!-- /.mb-1 -->
+            <div class="mb-2">
+              <label for="app-save-notes">
+                <input
+                  type="checkbox"
+                  name="app-save-notes"
+                  id="app-save-notes"
+                />
+                Save notes for the next day?
+              </label>
+              <p class="text-smaller">
+                Enabling this option won&apos;t reset your notes for the next
+                daylight.
+              </p>
+              <!-- /.text-smaller -->
+            </div>
+            <!-- /.mb-2 -->
+            <div class="mb-1">
+              <button type="button" class="button app-submit-options">
+                Save</button
+              ><!-- /.button -->
+              <button type="button" class="button app-close-window">
+                Close</button
+              ><!-- /.button -->
+            </div>
+            <!-- /.mb-1 -->
+          </form>
+        </div>
+        <!-- /.box -->
+      </div>
+      <!-- /.container -->
+    </section>
+    <!-- /.section -->
+
+    <script src="options.js"></script>
+  </body>
+</html>
