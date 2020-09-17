@@ -1,11 +1,9 @@
-const copyToClipboard = (callback) => {
-  const $notes = document.querySelector("#app-notes");
-
-  $notes.select();
+const copyToClipboard = ($selector, callback) => {
+  $selector.select();
 
   document.execCommand("copy");
 
-  $notes.blur();
+  $selector.blur();
 
   if (typeof callback == "function") {
     callback();
@@ -19,6 +17,11 @@ const getCurrentFullDate = () => {
   }).format(now);
 
   return currentDate;
+};
+
+const getTimestamp = () => {
+  const now = new Date();
+  return now.getTime();
 };
 
 const newLine = (multiplier = 1) => {
@@ -38,4 +41,11 @@ const goBack = () => {
   window.history.back();
 };
 
-export { copyToClipboard, getCurrentFullDate, newLine, closeWindow, goBack };
+export {
+  copyToClipboard,
+  getCurrentFullDate,
+  getTimestamp,
+  newLine,
+  closeWindow,
+  goBack,
+};

@@ -1,7 +1,12 @@
 /* I don't care if you moved on */
 
-import { copyToClipboard, getCurrentFullDate, newLine } from "./helper.js";
-import { chromeGetData } from "./chrome.js";
+import {
+  copyToClipboard,
+  getCurrentFullDate,
+  getTimestamp,
+  newLine,
+} from "./helper.js";
+import { chromeGetData, chromeSetData } from "./chrome.js";
 
 (function () {
   console.info("I'm not laying in bed with a fucked up head");
@@ -13,13 +18,29 @@ import { chromeGetData } from "./chrome.js";
 
 function loadEventListeners() {
   const $copyToClipboard = document.querySelector(".app-copy-to-clipboard");
+  const $notes = document.querySelector("#app-notes");
 
   $copyToClipboard.addEventListener("click", function () {
-    const notes = document.querySelector("#app-notes").value;
-
-    copyToClipboard(function () {
+    copyToClipboard(document.querySelector("#app-notes"), function () {
       console.log("Copied!");
     });
+  });
+
+  $notes.addEventListener("keyup", (event) => {
+    saveNotes();
+  });
+
+  window.addEventListener("cut", () => {
+    setTimeout(() => {
+      saveNotes();
+    }, 300);
+  });
+}
+
+function saveNotes() {
+  const $notes = document.querySelector("#app-notes");
+  chromeSetData("notes", $notes.value, () => {
+    console.log("Saved");
   });
 }
 

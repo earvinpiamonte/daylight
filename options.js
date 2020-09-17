@@ -15,22 +15,22 @@ function loadEventListeners() {
 }
 
 function submitOptions() {
-  const $notes = document.querySelector("#app-notes");
+  const $notesTemplate = document.querySelector("#app-notes-template");
   const $saveNotes = document.querySelector("#app-save-notes");
   const doSaveNotes = $saveNotes.checked;
 
-  chromeSetData("notes", $notes.value);
+  chromeSetData("notesTemplate", $notesTemplate.value);
   chromeSetData("saveNotes", doSaveNotes);
 
   alert("Options successfully saved.");
 }
 
 function restoreOptions() {
-  const $notes = document.querySelector("#app-notes");
+  const $notesTemplate = document.querySelector("#app-notes-template");
   const $saveNotes = document.querySelector("#app-save-notes");
 
-  chromeGetData("notes", (data) => {
-    $notes.value = data;
+  chromeGetData("notesTemplate", (data) => {
+    $notesTemplate.value = data;
   });
 
   chromeGetData("saveNotes", (data) => {
