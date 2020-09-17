@@ -1,3 +1,6 @@
+import { goBack } from "./helper.js";
+import { chromeGetData, chromeSetData } from "./chrome.js";
+
 (function () {
   restoreOptions();
   loadEventListeners();
@@ -33,29 +36,4 @@ function restoreOptions() {
   chromeGetData("saveNotes", (data) => {
     $saveNotes.checked = data;
   });
-}
-
-function chromeSetData(key, data, callback = null) {
-  let obj = {};
-  obj[key] = JSON.stringify(data);
-  chrome.storage.sync.set(obj, callback);
-}
-
-function chromeGetData(key, callback) {
-  chrome.storage.sync.get(key, function (result) {
-    let data = null;
-    if (result[key]) {
-      data = JSON.parse(result[key]);
-    }
-
-    callback(data);
-  });
-}
-
-function closeWindow() {
-  window.close();
-}
-
-function goBack() {
-  window.history.back();
 }
