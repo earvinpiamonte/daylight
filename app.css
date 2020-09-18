@@ -2,6 +2,7 @@
 :root {
   --light: #f7f7f7;
   --dark: #444;
+  --white: #fff;
   --radius: 4px;
   --font-family: "Courier New", Courier, monospace;
 
@@ -44,6 +45,7 @@ button {
   border-radius: var(--radius);
   padding: 1rem;
   width: 100%;
+  background-color: var(--white);
 }
 
 .mb-1 {
@@ -74,6 +76,7 @@ label {
   display: inline-block;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
+  cursor: pointer;
 }
 
 label > input[type="checkbox"] {
@@ -87,4 +90,8 @@ p {
 
 .text-smaller {
   font-size: 85%;
+}
+
+.input[readonly] {
+  background-color: var(--background);
 }
