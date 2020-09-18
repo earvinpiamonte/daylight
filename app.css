@@ -61,6 +61,7 @@ textarea {
 }
 
 .button {
+  position: relative;
   padding: 0.25rem;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -94,4 +95,27 @@ p {
 
 .input[readonly] {
   background-color: var(--background);
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-vertical-center {
+  align-items: center;
+}
+
+.flex\:50 {
+  width: 50%;
+  flex-grow: inherit;
+}
+
+.text-right {
+  text-align: right;
+}
+
+a {
+  color: var(--foreground);
+  font-weight: 600;
 }
