@@ -19,6 +19,7 @@ import { chromeGetData, chromeSetData } from "./chrome.js";
 function loadEventListeners() {
   const $copyToClipboard = document.querySelector(".app-copy-to-clipboard");
   const $notes = document.querySelector("#app-notes");
+  const $openOptionsBtn = document.querySelector(".app-open-options");
 
   $copyToClipboard.addEventListener("click", function () {
     copyToClipboard(document.querySelector("#app-notes"), function () {
@@ -34,6 +35,12 @@ function loadEventListeners() {
     setTimeout(() => {
       saveNotes();
     }, 300);
+  });
+
+  $openOptionsBtn.addEventListener("click", () => {
+    chrome.runtime.openOptionsPage
+      ? chrome.runtime.openOptionsPage()
+      : window.open(chrome.runtime.getURL("options.html"));
   });
 }
 
