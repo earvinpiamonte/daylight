@@ -64,7 +64,39 @@ function loadNotes() {
 function restoreOptions() {
   const $notes = document.querySelector("#app-notes");
 
-  chromeGetData("notes", (data) => {
-    $notes.value = data;
+  chromeGetData("resetNotes", (resetNotes) => {
+    if (resetNotes) {
+      console.log("Reset notes is enabled.");
+      chromeGetData("lastUpdated", (lastUpdated) => {
+        let today = new Date();
+        today.setHours(0, 0, 0, 0); // Set today's time to 0
+
+        const lastUpdatedPresise = new Date(lastUpdated);
+        const isToday = lastUpdatedPresise > today;
+
+        // If last updated is not today, then reset notes to template
+        if (!isToday) {
+          chromeGetData("notesTemplate", (data) => {
+            $notes.value = data;
+            saveNotes();
+          });
+
+          return;
+        }
+
+        // Else just get the previously saved notes
+        chromeGetData("notes", (data) => {
+          $notes.value = data;
+        });
+      });
+
+      return;
+    }
+
+    // If resetNotes is not enabled just get the previously saved notes
+    chromeGetData("notes", (data) => {
+      console.log("Reset notes is disabled. Displaying recently saved notes.");
+      $notes.value = data;
+    });
   });
 }
