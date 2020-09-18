@@ -39,8 +39,13 @@ function loadEventListeners() {
 
 function saveNotes() {
   const $notes = document.querySelector("#app-notes");
+
+  let now = new Date();
+
   chromeSetData("notes", $notes.value, () => {
-    console.log("Saved");
+    chromeSetData("lastUpdated", now, () => {
+      console.log("Saved: " + now);
+    });
   });
 }
 
