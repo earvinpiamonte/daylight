@@ -18,10 +18,12 @@
 html {
   background-color: var(--background);
   color: var(--foreground);
+  height: 100%;
 }
 
 body {
   font-family: var(--font-family);
+  min-height: 100%;
 }
 
 button {
