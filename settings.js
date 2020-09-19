@@ -21,29 +21,32 @@ function loadEventListeners() {
   }); */
 }
 
-function submitSettings() {
+async function submitSettings() {
   const $notesTemplate = document.querySelector("#app-notes-template");
   const $resetNotes = document.querySelector("#app-reset-notes");
 
-  chromeSetData("notesTemplate", $notesTemplate.value);
+  const notesTemplateSaved = await chromeSetData(
+    "notesTemplate",
+    $notesTemplate.value
+  );
+
   chromeSetData("resetNotes", $resetNotes.checked);
 
-  alert("Settings successfully saved.");
+  if (notesTemplateSaved) {
+    alert("Settings successfully saved.");
+    return;
+  }
+
+  alert("Something went wrong. Please refresh the page and try again.");
 }
 
-function restoreSettings() {
+async function restoreSettings() {
   const $notesTemplate = document.querySelector("#app-notes-template");
   const $resetNotes = document.querySelector("#app-reset-notes");
 
-  chromeGetData("notesTemplate", (data) => {
-    $notesTemplate.value = data;
-  });
+  const notesTemplate = await chromeGetData("notesTemplate");
+  const resetNotes = await chromeGetData("resetNotes");
 
-  chromeGetData("resetNotes", (data) => {
-    $resetNotes.checked = data;
-
-    /* if (!$resetNotes.checked) {
-      $notesTemplate.setAttribute("readonly", $resetNotes.checked);
-    } */
-  });
+  $notesTemplate.value = notesTemplate;
+  $resetNotes.checked = resetNotes;
 }

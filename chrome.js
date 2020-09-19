@@ -1,18 +1,32 @@
-const chromeGetData = (key, callback) => {
-  chrome.storage.sync.get(key, function (result) {
-    let data = null;
-    if (result[key]) {
-      data = JSON.parse(result[key]);
-    }
+const chromeGetData = async (key, defaultValue = null) => {
+  var promise = new Promise(function (resolve, reject) {
+    chrome.storage.sync.get(key, function (result) {
+      let data = null;
 
-    callback(data);
+      if (result[key]) {
+        data = JSON.parse(result[key]);
+      } else {
+        data = chromeSetData(key, defaultValue);
+      }
+
+      resolve(data);
+    });
   });
+
+  return await promise;
 };
 
-const chromeSetData = (key, data, callback = null) => {
+const chromeSetData = async (key, data) => {
   let obj = {};
   obj[key] = JSON.stringify(data);
-  chrome.storage.sync.set(obj, callback);
+
+  const promise = new Promise((resolve, reject) => {
+    chrome.storage.sync.set(obj, function () {
+      resolve(JSON.parse(obj[key]));
+    });
+  });
+
+  return await promise;
 };
 
 export { chromeGetData, chromeSetData };

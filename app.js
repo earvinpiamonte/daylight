@@ -1,11 +1,6 @@
 /* I don't care if you moved on */
 
-import {
-  copyToClipboard,
-  getCurrentFullDate,
-  getTimestamp,
-  newLine,
-} from "./helper.js";
+import { copyToClipboard } from "./helper.js";
 import { chromeGetData, chromeSetData } from "./chrome.js";
 
 (function () {
@@ -27,7 +22,7 @@ function loadEventListeners() {
     });
   });
 
-  $notes.addEventListener("keyup", (event) => {
+  $notes.addEventListener("keyup", () => {
     saveNotes();
   });
 
@@ -44,16 +39,17 @@ function loadEventListeners() {
   });
 }
 
-function saveNotes() {
+async function saveNotes() {
   const $notes = document.querySelector("#app-notes");
 
   let now = new Date();
 
-  chromeSetData("notes", $notes.value, () => {
-    chromeSetData("lastUpdated", now, () => {
-      console.log("Saved: " + now);
-    });
-  });
+  const notesSaved = await chromeSetData("notes", $notes.value);
+  const lastUpdated = await chromeSetData("lastUpdated", now);
+
+  if (notesSaved && lastUpdated) {
+    console.log("Notes saved.");
+  }
 }
 
 function loadUserInfo() {
@@ -63,47 +59,40 @@ function loadUserInfo() {
   });
 }
 
-function loadNotes() {
-  document.querySelector("#app-notes").value =
-    getCurrentFullDate() + newLine(2);
-}
-
-function restoreSettings() {
+async function restoreSettings() {
   const $notes = document.querySelector("#app-notes");
 
-  chromeGetData("resetNotes", (resetNotes) => {
-    if (resetNotes) {
-      console.log("Reset notes is enabled.");
-      chromeGetData("lastUpdated", (lastUpdated) => {
-        let today = new Date();
-        today.setHours(0, 0, 0, 0); // Set today's time to 0
+  let today = new Date();
 
-        const lastUpdatedPresise = new Date(lastUpdated);
-        const isToday = lastUpdatedPresise > today;
+  const resetNotes = await chromeGetData("resetNotes", false);
+  const lastUpdated = await chromeGetData("lastUpdated", today);
+  const notesTemplate = await chromeGetData("notesTemplate", "");
+  const notes = await chromeGetData("notes", "");
 
-        // If last updated is not today, then reset notes to template
-        if (!isToday) {
-          chromeGetData("notesTemplate", (data) => {
-            $notes.value = data;
-            saveNotes();
-          });
+  const lastUpdatedPresise = new Date(lastUpdated);
 
-          return;
-        }
+  today.setHours(0, 0, 0, 0); // Set today's time to 0
 
-        // Else just get the previously saved notes
-        chromeGetData("notes", (data) => {
-          $notes.value = data;
-        });
-      });
+  const withinToday = lastUpdatedPresise > today;
 
+  // Check if automatic reset notes is enabled
+  if (resetNotes) {
+    console.log("Reset notes is enabled.");
+
+    // If last updated is not within today -> load template
+    if (!withinToday) {
+      $notes.value = notesTemplate;
+      saveNotes(); // Save currently loaded template as notes
       return;
     }
 
-    // If resetNotes is not enabled just get the previously saved notes
-    chromeGetData("notes", (data) => {
-      console.log("Reset notes is disabled. Displaying recently saved notes.");
-      $notes.value = data;
-    });
-  });
+    // Else if last updated is within today -> load recently saved notes
+    $notes.value = notes;
+    return;
+  }
+
+  console.log("Reset notes is disabled. Displaying recently saved notes.");
+
+  // If automatic reset of notes is disabled -> load recently saved notes
+  $notes.value = notes;
 }
