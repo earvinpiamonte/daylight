@@ -3,8 +3,8 @@
   --light: #f7f7f7;
   --dark: #444;
   --white: #fff;
-  --radius: 4px;
-  --font-family: "Courier New", Courier, monospace;
+  --radius: 8px;
+  --font-family: "Trebuchet MS", Helvetica, sans-serif;
 
   --foreground: var(--dark);
   --background: var(--light);
@@ -50,6 +50,10 @@ button {
   background-color: var(--white);
 }
 
+.box textarea {
+  border-radius: calc(var(--radius) / 2);
+}
+
 .mb-1 {
   margin-bottom: 1rem;
 }
@@ -59,7 +63,10 @@ button {
 }
 
 textarea {
+  font-family: var(--font-family);
   resize: vertical;
+  font-weight: 400;
+  line-height: 1rem;
 }
 
 .button {
