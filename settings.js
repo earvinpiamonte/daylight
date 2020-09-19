@@ -25,19 +25,10 @@ async function submitSettings() {
   const $notesTemplate = document.querySelector("#app-notes-template");
   const $resetNotes = document.querySelector("#app-reset-notes");
 
-  const notesTemplateSaved = await chromeSetData(
-    "notesTemplate",
-    $notesTemplate.value
-  );
-
+  chromeSetData("notesTemplate", $notesTemplate.value);
   chromeSetData("resetNotes", $resetNotes.checked);
 
-  if (notesTemplateSaved) {
-    alert("Settings successfully saved.");
-    return;
-  }
-
-  alert("Something went wrong. Please refresh the page and try again.");
+  alert("Settings successfully saved.");
 }
 
 async function restoreSettings() {
