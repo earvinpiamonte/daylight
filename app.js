@@ -16,20 +16,18 @@ function loadEventListeners() {
   const $notes = document.querySelector("#app-notes");
   const $openSettingsBtn = document.querySelector(".app-open-settings");
 
+  const saveTimeout = 500;
+  let typingTimer;
+
   $copyToClipboard.addEventListener("click", function () {
     copyToClipboard(document.querySelector("#app-notes"), function () {
       console.log("Copied!");
     });
   });
 
-  $notes.addEventListener("keyup", () => {
-    saveNotes();
-  });
-
-  window.addEventListener("cut", () => {
-    setTimeout(() => {
-      saveNotes();
-    }, 300);
+  $notes.addEventListener("input", () => {
+    clearInterval(typingTimer);
+    typingTimer = setTimeout(saveNotes, saveTimeout);
   });
 
   $openSettingsBtn.addEventListener("click", () => {
