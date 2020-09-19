@@ -2,36 +2,36 @@ import { goBack } from "./helper.js";
 import { chromeGetData, chromeSetData } from "./chrome.js";
 
 (function () {
-  restoreOptions();
+  restoreSettings();
   loadEventListeners();
 })();
 
 function loadEventListeners() {
   const $closeWindowBtn = document.querySelector(".app-close-window");
-  const $submitOptionsBtn = document.querySelector(".app-submit-options");
+  const $submitSettingsBtn = document.querySelector(".app-submit-settings");
 
   const $resetNotes = document.querySelector("#app-reset-notes");
   const $notesTemplate = document.querySelector("#app-notes-template");
 
   $closeWindowBtn.addEventListener("click", goBack);
-  $submitOptionsBtn.addEventListener("click", submitOptions);
+  $submitSettingsBtn.addEventListener("click", submitSettings);
 
   /* $resetNotes.addEventListener("input", () => {
     $notesTemplate.toggleAttribute("readonly");
   }); */
 }
 
-function submitOptions() {
+function submitSettings() {
   const $notesTemplate = document.querySelector("#app-notes-template");
   const $resetNotes = document.querySelector("#app-reset-notes");
 
   chromeSetData("notesTemplate", $notesTemplate.value);
   chromeSetData("resetNotes", $resetNotes.checked);
 
-  alert("Options successfully saved.");
+  alert("Settings successfully saved.");
 }
 
-function restoreOptions() {
+function restoreSettings() {
   const $notesTemplate = document.querySelector("#app-notes-template");
   const $resetNotes = document.querySelector("#app-reset-notes");
 

@@ -13,7 +13,7 @@
     "128": "images/icon128.png",
     "512": "images/icon512.png"
   },
-  "options_page": "options.html",
+  "options_page": "settings.html",
   "chrome_url_overrides": {
     "newtab": "app.html"
   },

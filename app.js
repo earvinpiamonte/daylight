@@ -12,14 +12,14 @@ import { chromeGetData, chromeSetData } from "./chrome.js";
   console.info("I'm not laying in bed with a fucked up head");
 
   loadUserInfo();
-  restoreOptions();
+  restoreSettings();
   loadEventListeners();
 })();
 
 function loadEventListeners() {
   const $copyToClipboard = document.querySelector(".app-copy-to-clipboard");
   const $notes = document.querySelector("#app-notes");
-  const $openOptionsBtn = document.querySelector(".app-open-options");
+  const $openSettingsBtn = document.querySelector(".app-open-settings");
 
   $copyToClipboard.addEventListener("click", function () {
     copyToClipboard(document.querySelector("#app-notes"), function () {
@@ -37,7 +37,7 @@ function loadEventListeners() {
     }, 300);
   });
 
-  $openOptionsBtn.addEventListener("click", () => {
+  $openSettingsBtn.addEventListener("click", () => {
     chrome.runtime.openOptionsPage
       ? chrome.runtime.openOptionsPage()
       : window.open(chrome.runtime.getURL("options.html"));
@@ -68,7 +68,7 @@ function loadNotes() {
     getCurrentFullDate() + newLine(2);
 }
 
-function restoreOptions() {
+function restoreSettings() {
   const $notes = document.querySelector("#app-notes");
 
   chromeGetData("resetNotes", (resetNotes) => {
