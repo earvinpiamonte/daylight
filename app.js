@@ -15,6 +15,9 @@ function loadEventListeners() {
   const $copyToClipboard = document.querySelector(".app-copy-to-clipboard");
   const $notes = document.querySelector("#app-notes");
   const $openSettingsBtn = document.querySelector(".app-open-settings");
+  const $notesCurrentChars = document.querySelector(
+    ".app-notes-current-chars-count"
+  );
 
   const saveTimeout = 500;
   let typingTimer;
@@ -28,6 +31,8 @@ function loadEventListeners() {
   $notes.addEventListener("input", () => {
     clearInterval(typingTimer);
     typingTimer = setTimeout(saveNotes, saveTimeout);
+
+    $notesCurrentChars.innerHTML = $notes.value.length;
   });
 
   $openSettingsBtn.addEventListener("click", () => {
@@ -39,6 +44,13 @@ function loadEventListeners() {
 
 async function saveNotes() {
   const $notes = document.querySelector("#app-notes");
+  const maxNotesChars = 999;
+
+  // Do not save if notes length is greater than 999
+  if ($notes.value.length > maxNotesChars) {
+    console.log("I'm not laying in bed with a fucked up");
+    return;
+  }
 
   let now = new Date();
 
@@ -59,6 +71,9 @@ function loadUserInfo() {
 
 async function restoreSettings() {
   const $notes = document.querySelector("#app-notes");
+  const $notesCurrentChars = document.querySelector(
+    ".app-notes-current-chars-count"
+  );
 
   let today = new Date();
 
@@ -80,12 +95,14 @@ async function restoreSettings() {
     // If last updated is not within today -> load template
     if (!withinToday) {
       $notes.value = notesTemplate;
+      $notesCurrentChars.innerHTML = $notes.value.length;
       saveNotes(); // Save currently loaded template as notes
       return;
     }
 
     // Else if last updated is within today -> load recently saved notes
     $notes.value = notes;
+    $notesCurrentChars.innerHTML = $notes.value.length;
     return;
   }
 
@@ -93,4 +110,5 @@ async function restoreSettings() {
 
   // If automatic reset of notes is disabled -> load recently saved notes
   $notes.value = notes;
+  $notesCurrentChars.innerHTML = $notes.value.length;
 }
