@@ -7,18 +7,16 @@ import { chromeGetData, chromeSetData } from "./chrome.js";
 })();
 
 function loadEventListeners() {
-  const $closeWindowBtn = document.querySelector(".app-close-window");
   const $submitSettingsBtn = document.querySelector(".app-submit-settings");
 
   const $resetNotes = document.querySelector("#app-reset-notes");
   const $notesTemplate = document.querySelector("#app-notes-template");
 
-  $closeWindowBtn.addEventListener("click", goBack);
   $submitSettingsBtn.addEventListener("click", submitSettings);
 
-  /* $resetNotes.addEventListener("input", () => {
+  $resetNotes.addEventListener("input", () => {
     $notesTemplate.toggleAttribute("readonly");
-  }); */
+  });
 }
 
 async function submitSettings() {
@@ -29,6 +27,7 @@ async function submitSettings() {
   chromeSetData("resetNotes", $resetNotes.checked);
 
   alert("Settings successfully saved.");
+  goBack();
 }
 
 async function restoreSettings() {
@@ -40,4 +39,8 @@ async function restoreSettings() {
 
   $notesTemplate.value = notesTemplate;
   $resetNotes.checked = resetNotes;
+
+  if (!resetNotes) {
+    $notesTemplate.setAttribute("readonly", !resetNotes);
+  }
 }
