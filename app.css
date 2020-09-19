@@ -128,3 +128,7 @@ a {
   color: var(--foreground);
   font-weight: 600;
 }
+
+.vertical-align-middle {
+  vertical-align: middle;
+}
