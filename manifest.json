@@ -2,8 +2,8 @@
   "name": "Daylight",
   "version": "0.0.1",
   "manifest_version": 2,
-  "description": "Bad luck, I don't wanna be home at midnight.",
-  "author": "earvinpiamonte",
+  "description": "A Google Chrome extension that replaces your New Tab with daily notes.",
+  "author": "Noel Earvin Piamonte",
   "homepage_url": "https://github.com/earvinpiamonte/daylight",
   "icons": {
     "16": "images/icon16.png",
