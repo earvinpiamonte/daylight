@@ -15,42 +15,33 @@
               <img
                 src="images/icon32.png"
                 class="vertical-align-middle"
-                alt="Daylight icon,"
-                draggable="false"
+                alt=""
               />
-              Good day, <span class="app-user"></span
-              ><!-- /.app-user -->
+              Notes
             </h1>
             <div class="mb-1">
-              <textarea
-                name="app-notes"
-                id="app-notes"
-                rows="18"
-                maxlength="999"
-                placeholder="Wide awake, getting half past zero ..."
-              ></textarea
-              ><!-- /#app-notes -->
-              <p class="text-smaller">
-                <span class="app-notes-current-chars-count">0</span
-                ><!-- /.app-notes-current-chars-count -->
-                &#47;
-                <span class="app-notes-max-chars-count">999</span
-                ><!-- /.app-notes-max-chars-count -->
-                characters
-              </p>
-              <!-- /.text-smaller -->
-            </div>
-            <!-- /.mb-1 -->
-            <div class="mb-1">
-              <div class="flex flex-vertical-center">
+              <div class="textarea-with-toolbar mb-1">
+                <textarea
+                  name="app-notes"
+                  id="app-notes"
+                  rows="18"
+                  maxlength="999"
+                  placeholder="Wide awake, getting half past zero ..."
+                ></textarea
+                ><!-- /#app-notes -->
+                <button type="button" class="app-copy-to-clipboard">
+                  Copy
+                </button>
+              </div>
+              <!-- /.textarea-with-toolbar -->
+              <div class="flex flex-vertical-center text-smaller">
                 <div class="flex:50">
-                  <button
-                    class="app-copy-to-clipboard"
-                    title="Copied to clipoard"
-                    tabindex="-1"
-                  >
-                    Copy to clipoard
-                  </button>
+                  <span class="app-notes-current-chars-count">0</span
+                  ><!-- /.app-notes-current-chars-count -->
+                  &#47;
+                  <span class="app-notes-max-chars-count">999</span
+                  ><!-- /.app-notes-max-chars-count -->
+                  characters
                 </div>
                 <!-- /.flex:50 -->
                 <div class="flex:50 text-right">
@@ -58,7 +49,7 @@
                     href="#settings"
                     draggable="false"
                     class="app-open-settings"
-                    >Settings &raquo;</a
+                    >Settings</a
                   >
                 </div>
                 <!-- /.flex:50 -->

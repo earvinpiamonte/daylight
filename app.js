@@ -6,7 +6,6 @@ import { chromeGetData, chromeSetData } from "./chrome.js";
 (function () {
   console.info("I'm not laying in bed with a fucked up head");
 
-  loadUserInfo();
   restoreSettings();
   loadEventListeners();
 })();
