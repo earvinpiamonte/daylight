@@ -1,8 +1,8 @@
 {
-  "name": "Daylight",
+  "name": "daylight",
   "version": "0.0.1",
   "manifest_version": 2,
-  "description": "A Google Chrome extension that replaces your New Tab with daily notes.",
+  "description": "A Google Chrome extension that replaces your New Tab with a form to take down notes.",
   "author": "Noel Earvin Piamonte",
   "homepage_url": "https://github.com/earvinpiamonte/daylight",
   "icons": {
