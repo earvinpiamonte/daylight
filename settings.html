@@ -44,28 +44,37 @@
                 Every 12 AM, your notes will reset to whatever you put here in
                 the template.
               </p>
-              <textarea
-                name="app-notes-template"
-                id="app-notes-template"
-                rows="18"
-                maxlength="999"
-                placeholder="Write something here"
-              ></textarea
-              ><!-- /#app-notes-template -->
-              <p class="text-smaller">
-                <span class="app-notes-current-chars-count">0</span
-                ><!-- /.app-notes-current-chars-count -->
-                &#47;
-                <span class="app-notes-max-chars-count">999</span
-                ><!-- /.app-notes-max-chars-count -->
-                characters
-              </p>
-              <!-- /.text-smaller -->
+              <div class="textarea-with-toolbar mb-1">
+                <textarea
+                  name="app-notes-template"
+                  id="app-notes-template"
+                  rows="18"
+                  maxlength="999"
+                  placeholder="Write something here"
+                ></textarea
+                ><!-- /#app-notes-template -->
+                <button type="button" class="app-copy-to-clipboard">
+                  Copy
+                </button>
+              </div>
+              <!-- /.textarea-with-toolbar -->
+              <div class="flex flex-vertical-center text-smaller">
+                <div class="flex:50">
+                  <span class="app-notes-current-chars-count">0</span
+                  ><!-- /.app-notes-current-chars-count -->
+                  &#47;
+                  <span class="app-notes-max-chars-count">999</span
+                  ><!-- /.app-notes-max-chars-count -->
+                  characters
+                </div>
+                <!-- /.flex:50 -->
+              </div>
+              <!-- /.flex -->
             </div>
             <!-- /.mb-1 -->
-
             <div class="mb-1">
-              <button type="button" class="app-submit-settings">Save</button
+              <button type="button" class="primary app-submit-settings">
+                Save</button
               ><!-- /.button -->
             </div>
             <!-- /.mb-1 -->

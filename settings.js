@@ -9,7 +9,6 @@ import { chromeGetData, chromeSetData } from "./chrome.js";
 function loadEventListeners() {
   const $submitSettingsBtn = document.querySelector(".app-submit-settings");
 
-  const $resetNotes = document.querySelector("#app-reset-notes");
   const $notesTemplate = document.querySelector("#app-notes-template");
   const $notesCurrentChars = document.querySelector(
     ".app-notes-current-chars-count"
@@ -18,10 +17,6 @@ function loadEventListeners() {
   autosize($notesTemplate);
 
   $submitSettingsBtn.addEventListener("click", submitSettings);
-
-  $resetNotes.addEventListener("input", () => {
-    $notesTemplate.toggleAttribute("readonly");
-  });
 
   $notesTemplate.addEventListener("input", () => {
     $notesCurrentChars.innerHTML = $notesTemplate.value.length;
@@ -61,10 +56,6 @@ async function restoreSettings() {
   $resetNotes.checked = resetNotes;
 
   $notesCurrentChars.innerHTML = $notesTemplate.value.length;
-
-  if (!resetNotes) {
-    $notesTemplate.setAttribute("readonly", !resetNotes);
-  }
 
   autosize.update($notesTemplate);
 }

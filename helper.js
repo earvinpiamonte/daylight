@@ -41,6 +41,55 @@ const goBack = () => {
   window.history.back();
 };
 
+const daylightLyrics = [
+  "Wide awake, getting half past zero",
+  "It's getting heated so I leave the windows open (leave the windows open)",
+  "Preoccupied with a late night B-roll",
+  "Right now, laying here alone is heaven (here alone is heaven)",
+  "And I've been a hero",
+  "Helpless",
+  "I'm in hell",
+  "And I've cried",
+  "Up and down in these hallways",
+  "Blamed myself",
+  "Bad luck, I don't wanna be home at midnight",
+  "Sun's up, I don't really wanna fight the daylight",
+  "I don't care if you moved on",
+  "I'm not laying in bed with a fucked up head",
+  "I'm not laying in bed with a fucked up",
+  "Sun-dried on the backyard patio",
+  "Drunk eyes",
+  "'Cause I didn't give it a home run",
+  "Yeah, yeah",
+  "You're hiding on the FM radio",
+  "I sing along just to sing my thoughts at someone",
+  "Yeah, yeah",
+  "And I've been a hero",
+  "Helpless",
+  "I'm in hell",
+  "And I've cried",
+  "Up and down in these hallways",
+  "Blamed myself",
+  "Bad luck, I don't wanna be home at midnight",
+  "Sun's up, I don't really wanna fight the daylight",
+  "I don't care if you moved on",
+  "I'm not laying in bed with a fucked up head",
+  "I'm not laying in bed with a fucked up",
+];
+
+const decodeVariable = (string) => {
+  if (typeof string !== "string") {
+    return;
+  }
+
+  const randomNumber = Math.floor(Math.random() * daylightLyrics.length);
+
+  string = string.replaceAll("[current_date]", getCurrentFullDate());
+  string = string.replaceAll("[daylight]", daylightLyrics[randomNumber]);
+
+  return string;
+};
+
 export {
   copyToClipboard,
   getCurrentFullDate,
@@ -48,4 +97,5 @@ export {
   newLine,
   closeWindow,
   goBack,
+  decodeVariable,
 };

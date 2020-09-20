@@ -1,12 +1,11 @@
 /* I don't care if you moved on */
 
-import { copyToClipboard } from "./helper.js";
+import { copyToClipboard, decodeVariable } from "./helper.js";
 import { chromeGetData, chromeSetData } from "./chrome.js";
 
 (function () {
   console.info("I'm not laying in bed with a fucked up head");
 
-  loadUserInfo();
   restoreSettings();
   loadEventListeners();
 })();
@@ -81,7 +80,7 @@ async function restoreSettings() {
 
   const resetNotes = await chromeGetData("resetNotes", false);
   const lastUpdated = await chromeGetData("lastUpdated", today);
-  const notesTemplate = await chromeGetData("notesTemplate", "");
+  let notesTemplate = await chromeGetData("notesTemplate", "");
   const notes = await chromeGetData("notes", "");
 
   const lastUpdatedPresise = new Date(lastUpdated);
@@ -89,6 +88,8 @@ async function restoreSettings() {
   today.setHours(0, 0, 0, 0); // Set today's time to 0
 
   const withinToday = lastUpdatedPresise > today;
+
+  notesTemplate = decodeVariable(notesTemplate);
 
   // Check if automatic reset notes is enabled
   if (resetNotes) {
