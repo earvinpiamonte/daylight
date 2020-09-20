@@ -2,8 +2,9 @@
 :root {
   --light: #f7f7f7;
   --dark: #444;
-  --radius: 4px;
-
+  --white: #fff;
+  --radius: 0.5rem;
+  --font-family: "Trebuchet MS", Helvetica, sans-serif;
   --foreground: var(--dark);
   --background: var(--light);
 }
@@ -17,12 +18,77 @@
 html {
   background-color: var(--background);
   color: var(--foreground);
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-family);
+  min-height: 100%;
+}
+
+button {
+  font-family: var(--font-family);
+  outline: none;
+  position: relative;
+  padding: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  box-shadow: none !important;
+  border-radius: var(--radius);
+  background-color: var(--background);
+  color: var(--foreground);
+  border-width: 1px;
+  border-color: var(--foreground);
+  cursor: pointer;
+  background-image: none;
+}
+
+textarea {
+  font-family: var(--font-family);
+  resize: vertical;
+  font-weight: 400;
+  line-height: 1rem;
+  outline: none;
+  border: 1px solid var(--foreground);
+  border-radius: var(--radius);
+  padding: 1rem;
+  width: 100%;
+  background-color: var(--white);
+}
+
+label {
+  font-weight: bold;
+  display: inline-block;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+
+label > input[type="checkbox"] {
+  vertical-align: middle;
+}
+
+p {
+  margin-bottom: 0.5rem;
+  line-height: 1rem;
+}
+
+textarea[readonly],
+input[readonly] {
+  background-color: var(--background);
+}
+
+a {
+  color: var(--foreground);
+  font-weight: 600;
 }
 
 .container {
   max-width: 576px;
   margin-left: auto;
   margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .section {
@@ -35,23 +101,43 @@ html {
   border-radius: var(--radius);
   padding: 1rem;
   width: 100%;
+  background-color: var(--white);
+}
+
+.box textarea {
+  border-radius: calc(var(--radius) / 2);
 }
 
 .mb-1 {
   margin-bottom: 1rem;
 }
 
-textarea {
-  resize: vertical;
+.mb-2 {
+  margin-bottom: 1.5rem;
 }
 
-.button {
-  padding: 0.25rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  box-shadow: none !important;
-  border-radius: var(--radius);
-  background-color: var(--background);
-  color: var(--foreground);
-  border-width: 1px;
+.text-smaller {
+  font-size: 85%;
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-vertical-center {
+  align-items: center;
+}
+
+.flex\:50 {
+  width: 50%;
+  flex-grow: inherit;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.vertical-align-middle {
+  vertical-align: middle;
 }
