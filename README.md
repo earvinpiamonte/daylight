@@ -25,4 +25,4 @@ Icons made by [Freepik](https://www.flaticon.com/authors/freepik) from [www.flat
 <br>
 <br>
 <br>
-> "It might be nice for people to hear a song about daylight, especially when we don’t get as much of it as we used to." - Joji
+"It might be nice for people to hear a song about daylight, especially when we don’t get as much of it as we used to." - Joji
