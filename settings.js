@@ -15,6 +15,8 @@ function loadEventListeners() {
     ".app-notes-current-chars-count"
   );
 
+  autosize($notesTemplate);
+
   $submitSettingsBtn.addEventListener("click", submitSettings);
 
   $resetNotes.addEventListener("input", () => {
@@ -63,4 +65,6 @@ async function restoreSettings() {
   if (!resetNotes) {
     $notesTemplate.setAttribute("readonly", !resetNotes);
   }
+
+  autosize.update($notesTemplate);
 }

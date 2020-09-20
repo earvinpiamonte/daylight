@@ -22,6 +22,8 @@ function loadEventListeners() {
   const saveTimeout = 500;
   let typingTimer;
 
+  autosize($notes);
+
   $copyToClipboard.addEventListener("click", function () {
     copyToClipboard(document.querySelector("#app-notes"), function () {
       console.log("Copied!");
@@ -96,6 +98,8 @@ async function restoreSettings() {
     if (!withinToday) {
       $notes.value = notesTemplate;
       $notesCurrentChars.innerHTML = $notes.value.length;
+
+      autosize.update($notes);
       saveNotes(); // Save currently loaded template as notes
       return;
     }
@@ -103,6 +107,8 @@ async function restoreSettings() {
     // Else if last updated is within today -> load recently saved notes
     $notes.value = notes;
     $notesCurrentChars.innerHTML = $notes.value.length;
+
+    autosize.update($notes);
     return;
   }
 
@@ -111,4 +117,6 @@ async function restoreSettings() {
   // If automatic reset of notes is disabled -> load recently saved notes
   $notes.value = notes;
   $notesCurrentChars.innerHTML = $notes.value.length;
+
+  autosize.update($notes);
 }
