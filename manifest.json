@@ -1,9 +1,9 @@
 {
-  "name": "Daylight",
+  "name": "daylight",
   "version": "0.0.1",
   "manifest_version": 2,
-  "description": "Bad luck, I don't wanna be home at midnight.",
-  "author": "earvinpiamonte",
+  "description": "Replace the page you see when opening a new tab with a form to take down notes.",
+  "author": "Noel Earvin Piamonte",
   "homepage_url": "https://github.com/earvinpiamonte/daylight",
   "icons": {
     "16": "images/icon16.png",
