@@ -122,7 +122,8 @@ label {
 }
 
 label > input[type="checkbox"] {
-  vertical-align: middle;
+  vertical-align: top;
+  margin-right: 0.25rem;
 }
 
 p {
