@@ -1,3 +1,4 @@
+<!-- Bad luck, I don't wanna be home at midnight -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,83 +6,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="app.css" />
     <title>daylight | settings</title>
+    <!--
+      Developed and maintained by Noel Earvin Piamonte
+      Website: https://earvinpiamonte.com/
+      Twitter: https://twitter.com/earvinpiamonte/
+      Date updated: September 27, 2020
+    -->
   </head>
-  <body>
-    <section class="section">
-      <div class="container">
-        <div class="box">
-          <h1 class="mb-2">
-            <img
-              src="images/icon32.png"
-              class="vertical-align-middle"
-              alt="Daylight icon,"
-              draggable="false"
-            />
-            settings
-          </h1>
-          <form>
-            <div class="mb-1">
-              <label for="app-reset-notes">
-                <input
-                  type="checkbox"
-                  name="app-reset-notes"
-                  id="app-reset-notes"
-                />
-                Automatically reset notes
-              </label>
-              <p class="text-smaller">
-                Enabling this option will reset your notes to your template for
-                the next daylight.
-              </p>
-              <!-- /.text-smaller -->
-            </div>
-            <!-- /.mb-1 -->
-            <div class="mb-1">
-              <label for="app-notes-template">Template</label>
-              <p class="text-smaller">
-                Every 12 AM, your notes will reset to whatever you put here in
-                the template.
-              </p>
-              <div class="textarea-with-toolbar mb-1">
+  <body class="h-100 w-100 py-2">
+    <main class="h-100 flex flex-vertical-center">
+      <section class="section w-100 my-auto">
+        <div class="container">
+          <div class="card">
+            <div class="flexible-container mb-1 py-2">
+              <h1 class="mb-1">Settings</h1>
+              <div class="mb-1">
+                <label for="app-reset-notes">
+                  <input
+                    type="checkbox"
+                    name="app-reset-notes"
+                    id="app-reset-notes"
+                  />
+                  Automatically reset notes
+                </label>
+                <p class="text-smaller">
+                  Enabling this option will reset your notes to your template
+                  for the next daylight.
+                </p>
+                <!-- /.text-smaller -->
+              </div>
+              <!-- /.mb-1 -->
+              <div class="textarea-with-toolbar pt-0">
+                <label for="app-notes-template">Template</label>
                 <textarea
                   name="app-notes-template"
                   id="app-notes-template"
-                  rows="18"
+                  class="pt-0"
+                  rows="10"
                   maxlength="999"
-                  placeholder="Write down your notes template ..."
+                  placeholder="Write down things here you often write on the start of your day..."
+                  autofocus
                 ></textarea
                 ><!-- /#app-notes-template -->
               </div>
               <!-- /.textarea-with-toolbar -->
-              <div class="flex flex-vertical-center text-smaller">
-                <div class="flex:50">
+              <div class="py-1 text-secondary">
+                <small>
                   <span class="app-notes-current-chars-count">0</span
                   ><!-- /.app-notes-current-chars-count -->
-                  &#47;
-                  <span class="app-notes-max-chars-count">999</span
-                  ><!-- /.app-notes-max-chars-count -->
-                  characters
-                </div>
-                <!-- /.flex:50 -->
+                  characters left
+                </small>
               </div>
-              <!-- /.flex -->
+              <!-- /.py-1 text-secondary -->
+              <div class="text-right">
+                <button type="button" class="primary app-submit-settings">
+                  Save</button
+                ><!-- /.button -->
+              </div>
+              <!-- /.text-right -->
             </div>
-            <!-- /.mb-1 -->
-            <div class="mb-1">
-              <button type="button" class="primary app-submit-settings">
-                Save</button
-              ><!-- /.button -->
-            </div>
-            <!-- /.mb-1 -->
-          </form>
+            <!-- /.flexible-container mb-1 -->
+          </div>
+          <!-- /.card -->
         </div>
-        <!-- /.box -->
-      </div>
-      <!-- /.container -->
-    </section>
-    <!-- /.section -->
+        <!-- /.container -->
+      </section>
+      <!-- /.section -->
+    </main>
+    <!-- /.h-100 flex flex-vertical-center -->
+    <footer class="footer">
+      <p class="px-1">
+        <a
+          href="https://earvinpiamonte-daylight.netlify.app"
+          draggable="false"
+          target="_blank"
+          rel="noopener noreferrer"
+          >daylight &copy; 2020</a
+        >
+      </p>
+    </footer>
+    <!-- /.footer -->
 
     <script src="libs/autosize/autosize.min.js"></script>
     <script type="module" src="settings.js"></script>
   </body>
+  <!-- /.h-100 w-100 py-2 -->
 </html>

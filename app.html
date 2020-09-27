@@ -1,70 +1,70 @@
+<!-- Bad luck, I don't wanna be home at midnight -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="app.css" />
-    <title>daylight | bad luck, I don't wanna be home at midnight</title>
+    <title>daylight |</title>
+    <!--
+      Developed and maintained by Noel Earvin Piamonte
+      Website: https://earvinpiamonte.com/
+      Twitter: https://twitter.com/earvinpiamonte/
+      Date updated: September 27, 2020
+    -->
   </head>
-  <body>
-    <main>
-      <section class="section">
+  <body class="h-100 w-100 py-2">
+    <main class="h-100 flex flex-vertical-center">
+      <section class="section w-100 my-auto">
         <div class="container">
-          <div class="box">
-            <h1 class="mb-1">
-              <img
-                src="images/icon32.png"
-                class="vertical-align-middle"
-                alt=""
-              />
-              notes
-            </h1>
-            <div class="mb-1">
-              <div class="textarea-with-toolbar mb-1">
+          <div class="card">
+            <div class="flexible-container mb-1">
+              <div class="textarea-with-toolbar">
                 <textarea
                   name="app-notes"
                   id="app-notes"
                   rows="18"
                   maxlength="999"
-                  placeholder="Wide awake, getting half past zero ..."
+                  placeholder="Write something here..."
                 ></textarea
                 ><!-- /#app-notes -->
-                <button type="button" class="app-copy-to-clipboard">
+                <button
+                  type="button"
+                  class="app-copy-to-clipboard btn-floating"
+                >
                   Copy
                 </button>
               </div>
               <!-- /.textarea-with-toolbar -->
-              <div class="flex flex-vertical-center text-smaller">
-                <div class="flex:50">
+              <div class="py-1 text-secondary">
+                <small>
                   <span class="app-notes-current-chars-count">0</span
                   ><!-- /.app-notes-current-chars-count -->
-                  &#47;
-                  <span class="app-notes-max-chars-count">999</span
-                  ><!-- /.app-notes-max-chars-count -->
-                  characters
-                </div>
-                <!-- /.flex:50 -->
-                <div class="flex:50 text-right">
-                  <a
-                    href="#settings"
-                    draggable="false"
-                    class="app-open-settings"
-                    >Settings</a
-                  >
-                </div>
-                <!-- /.flex:50 -->
+                  characters left
+                </small>
               </div>
-              <!-- /.flex -->
+              <!-- /.py-1 text-secondary -->
             </div>
             <!-- /.mb-1 -->
           </div>
-          <!-- /.box -->
+          <!-- /.card -->
         </div>
         <!-- /.container -->
       </section>
       <!-- /.section -->
     </main>
+    <!-- /.h-100 flex flex-vertical-center -->
+    <footer class="footer">
+      <p class="px-1">
+        <a href="#settings" draggable="false" class="app-open-settings"
+          >Settings</a
+        >
+      </p>
+    </footer>
+    <!-- /.footer -->
+
     <script src="libs/autosize/autosize.min.js"></script>
     <script type="module" src="app.js"></script>
   </body>
+  <!-- /.h-100 w-100 py-2 -->
 </html>
