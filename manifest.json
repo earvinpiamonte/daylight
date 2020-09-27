@@ -2,7 +2,7 @@
   "name": "daylight",
   "version": "0.0.1",
   "manifest_version": 2,
-  "description": "Replace the page you see when opening a new tab with a form to take down notes.",
+  "description": "Write down notes directly on the new tab page of your Google Chrome browser.",
   "author": "Noel Earvin Piamonte",
   "homepage_url": "https://github.com/earvinpiamonte/daylight",
   "icons": {

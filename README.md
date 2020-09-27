@@ -1,10 +1,9 @@
 # daylight
 
-A Google Chrome extension to replace the page you see when opening a new tab with a form to take down notes.
+Write down notes directly on the new tab page of your Google Chrome browser.
 
-## Features
+## Other features
 
-- take down notes directly on the New Tab of your browser
 - opt in to automatically reset your notes from your template (resets to the next midnight)
 - set up daily notes template
 - easily copy your notes for the day with a copy to clipboard button and send it anywhere
