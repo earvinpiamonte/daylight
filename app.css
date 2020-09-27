@@ -2,18 +2,54 @@
 
 :root {
   --light: #f3f5fd;
-  --dark: #05001a;
+  --dark: #272727;
+  --darker: #121212;
   --white: #fff;
   --transparent: transparent;
-  --primary: #6600f6;
-  --secondary: #c1c4da;
-  --success: #00caf7;
-  --warning: #ffd600;
-  --danger: #ff0080;
+  --blue: #6600f6;
+  --grey: #c1c4da;
+  --green: #00caf7;
+  --yellow: #ffd600;
+  --red: #f7490d;
   --radius: 0.5rem;
   --font-family: "Trebuchet MS", Helvetica, sans-serif;
-  --foreground: var(--dark);
+  --shadow-light: 0 1rem 1.5rem rgba(25, 25, 25, 0.15);
+  --shadow-dark: 0 1rem 1.5rem rgba(0, 0, 0, 0.15);
+
+  /* Set defaults */
+  --primary: var(--dark);
+  --secondary: var(--grey);
+  --success: var(--green);
+  --warning: var(--yellow);
+
+  --text-color: var(--dark);
   --background: var(--light);
+  --component-background: var(--white);
+  --component-shadow: var(--shadow-dark);
+}
+
+[data-theme="light"] {
+  --primary: var(--darker);
+  --secondary: var(--grey);
+  --success: var(--green);
+  --warning: var(--yellow);
+
+  --text-color: var(--dark);
+  --background: var(--light);
+  --component-background: var(--white);
+  --component-shadow: var(--shadow-dark);
+}
+
+[data-theme="dark"] {
+  --primary: var(--dark);
+  --secondary: var(--grey);
+  --success: var(--green);
+  --warning: var(--yellow);
+
+  --text-color: var(--light);
+  --background: var(--dark);
+  --component-background: var(--darker);
+  --component-shadow: var(--shadow-light);
 }
 
 * {
@@ -24,7 +60,7 @@
 
 html {
   background-color: var(--background);
-  color: var(--foreground);
+  color: var(--text-color);
   height: 100%;
 }
 
@@ -32,11 +68,12 @@ body {
   font-family: var(--font-family);
   background-color: var(--background);
   background-attachment: fixed;
+  color: var(--text-color);
   min-height: 100%;
 }
 
 button {
-  background-color: var(--background);
+  background-color: var(--component-background);
   background-image: none;
   font-family: var(--font-family);
   box-shadow: none;
@@ -47,20 +84,22 @@ button {
   padding-right: 1rem;
   cursor: pointer;
   border-width: 1px;
+  border-style: solid;
+  border-color: var(--primary);
   border-radius: calc(var(--radius) * 2);
-  color: var(--foreground);
-  border-color: var(--foreground);
+  /* color: var(--text-color); */
 }
 
 button.primary {
-  background-color: var(--dark);
-  border-color: var(--dark);
-  color: var(--white);
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: var(--secondary);
 }
 
 textarea {
   font-family: var(--font-family);
   background-color: var(--transparent);
+  color: var(--text-color);
   resize: vertical;
   display: block;
   width: 100%;
@@ -92,7 +131,7 @@ p {
 }
 
 a {
-  color: var(--foreground);
+  color: var(--text-color);
   font-weight: 600;
   text-decoration: none;
 }
@@ -199,16 +238,15 @@ a:hover {
 
 .card {
   position: relative;
-  background-color: var(--white);
+  background-color: var(--component-background);
   border-left: 0.25rem solid var(--warning);
   border-top-right-radius: var(--radius);
   border-bottom-right-radius: var(--radius);
-  box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.15);
+  box-shadow: var(--component-shadow);
 }
 
 .textarea-with-toolbar {
   position: relative;
-  background-color: var(--white);
   padding-top: 1.25rem;
   margin-bottom: 0px;
 }
@@ -225,7 +263,7 @@ a:hover {
   font-size: 90%;
   border-radius: var(--radius);
   border-width: 0px;
-  color: var(--foreground);
+  color: var(--text-color);
   background-color: var(--transparent);
 }
 
