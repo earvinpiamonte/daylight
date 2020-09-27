@@ -3,6 +3,8 @@
 import { copyToClipboard, decodeVariable } from "./helper.js";
 import { chromeGetData, chromeSetData } from "./chrome.js";
 
+const maxNotesChars = 999;
+
 (function () {
   console.info("I'm not laying in bed with a fucked up head");
 
@@ -33,7 +35,7 @@ function loadEventListeners() {
     clearInterval(typingTimer);
     typingTimer = setTimeout(saveNotes, saveTimeout);
 
-    $notesCurrentChars.innerHTML = $notes.value.length;
+    $notesCurrentChars.innerHTML = maxNotesChars - $notes.value.length;
   });
 
   $openSettingsBtn.addEventListener("click", () => {
@@ -45,9 +47,8 @@ function loadEventListeners() {
 
 async function saveNotes() {
   const $notes = document.querySelector("#app-notes");
-  const maxNotesChars = 999;
 
-  // Do not save if notes length is greater than 999
+  // Do not save if notes length is greater than maxNotesChars
   if ($notes.value.length > maxNotesChars) {
     console.log("I'm not laying in bed with a fucked up");
     return;
@@ -98,7 +99,7 @@ async function restoreSettings() {
     // If last updated is not within today -> load template
     if (!withinToday) {
       $notes.value = notesTemplate;
-      $notesCurrentChars.innerHTML = $notes.value.length;
+      $notesCurrentChars.innerHTML = maxNotesChars - $notes.value.length;
 
       autosize.update($notes);
       saveNotes(); // Save currently loaded template as notes
@@ -107,7 +108,7 @@ async function restoreSettings() {
 
     // Else if last updated is within today -> load recently saved notes
     $notes.value = notes;
-    $notesCurrentChars.innerHTML = $notes.value.length;
+    $notesCurrentChars.innerHTML = maxNotesChars - $notes.value.length;
 
     autosize.update($notes);
     return;
@@ -117,7 +118,7 @@ async function restoreSettings() {
 
   // If automatic reset of notes is disabled -> load recently saved notes
   $notes.value = notes;
-  $notesCurrentChars.innerHTML = $notes.value.length;
+  $notesCurrentChars.innerHTML = maxNotesChars - $notes.value.length;
 
   autosize.update($notes);
 }

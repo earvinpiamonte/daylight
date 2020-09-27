@@ -1,6 +1,8 @@
 import { goBack } from "./helper.js";
 import { chromeGetData, chromeSetData } from "./chrome.js";
 
+const maxNotesChars = 999;
+
 (function () {
   restoreSettings();
   loadEventListeners();
@@ -19,15 +21,13 @@ function loadEventListeners() {
   $submitSettingsBtn.addEventListener("click", submitSettings);
 
   $notesTemplate.addEventListener("input", () => {
-    $notesCurrentChars.innerHTML = $notesTemplate.value.length;
+    $notesCurrentChars.innerHTML = maxNotesChars - $notesTemplate.value.length;
   });
 }
 
 async function submitSettings() {
   const $notesTemplate = document.querySelector("#app-notes-template");
   const $resetNotes = document.querySelector("#app-reset-notes");
-
-  const maxNotesChars = 999;
 
   // Get only 999 characters from notes before save
   if ($notesTemplate.value.length > maxNotesChars) {
@@ -55,7 +55,7 @@ async function restoreSettings() {
   $notesTemplate.value = notesTemplate;
   $resetNotes.checked = resetNotes;
 
-  $notesCurrentChars.innerHTML = $notesTemplate.value.length;
+  $notesCurrentChars.innerHTML = maxNotesChars - $notesTemplate.value.length;
 
   autosize.update($notesTemplate);
 }
