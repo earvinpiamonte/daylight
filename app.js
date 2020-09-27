@@ -73,6 +73,7 @@ function loadUserInfo() {
 
 async function restoreSettings() {
   const $notes = document.querySelector("#app-notes");
+  const $html = document.querySelector("html");
   const $notesCurrentChars = document.querySelector(
     ".app-notes-current-chars-count"
   );
@@ -83,6 +84,10 @@ async function restoreSettings() {
   const lastUpdated = await chromeGetData("lastUpdated", today);
   let notesTemplate = await chromeGetData("notesTemplate", "");
   const notes = await chromeGetData("notes", "");
+  const enableDarkMode = await chromeGetData("enableDarkMode", false);
+
+  // If dark mode is enabled
+  $html.dataset.theme = enableDarkMode ? "dark" : "light";
 
   const lastUpdatedPresise = new Date(lastUpdated);
 
