@@ -20,8 +20,6 @@ This project is developed and maintained by [@earvinpiamonte](https://twitter.co
 
 Icons made by [Freepik](https://www.flaticon.com/authors/freepik) from [www.flaticon.com](https://www.flaticon.com/).
 
-Background image pattern by [Hero Patterns](https://www.heropatterns.com/).
-
 <br>
 <br>
 <br>
