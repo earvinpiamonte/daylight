@@ -87,7 +87,6 @@ button {
   border-style: solid;
   border-color: var(--primary);
   border-radius: calc(var(--radius) * 2);
-  /* color: var(--text-color); */
 }
 
 button.primary {
