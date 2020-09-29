@@ -12,10 +12,11 @@ const maxNotesChars = 999;
   loadEventListeners();
 })();
 
-function loadEventListeners() {
+async function loadEventListeners() {
   const $copyToClipboard = document.querySelector(".app-copy-to-clipboard");
   const $notes = document.querySelector("#app-notes");
   const $openSettingsBtn = document.querySelector(".app-open-settings");
+  const $useTemplateBtn = document.querySelector(".app-trigger-use-template");
   const $notesCurrentChars = document.querySelector(
     ".app-notes-current-chars-count"
   );
@@ -43,6 +44,32 @@ function loadEventListeners() {
       ? chrome.runtime.openOptionsPage()
       : window.open(chrome.runtime.getURL("options.html"));
   });
+
+  $useTemplateBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const confirmLoad = confirm(
+      "Are you sure you want to use your template for your notes now? This will override your current notes."
+    );
+
+    if (confirmLoad) {
+      loadNotesTemplate();
+    }
+  });
+}
+
+async function loadNotesTemplate() {
+  const $notes = document.querySelector("#app-notes");
+
+  const notesTemplate = await chromeGetData("notesTemplate");
+
+  if (notesTemplate) {
+    $notes.value = decodeVariable(notesTemplate);
+
+    saveNotes();
+
+    console.log("I won't feel a thing");
+  }
 }
 
 async function saveNotes() {
@@ -64,11 +91,20 @@ async function saveNotes() {
   }
 }
 
-function loadUserInfo() {
-  chrome.identity.getProfileUserInfo(function (userInfo) {
-    console.log(userInfo);
-    document.querySelector(".app-user").innerHTML = userInfo.email;
-  });
+function toggleElementDisplay(selector = null, display) {
+  if (typeof selector != "string" || typeof display != "string") {
+    return;
+  }
+
+  const $selector = document.querySelector(selector);
+
+  if (display == "show") {
+    if ($selector.classList.contains("display-none")) {
+      $selector.classList.remove("display-none");
+    }
+  } else if (display == "hide") {
+    $selector.classList.add("display-none");
+  }
 }
 
 async function restoreSettings() {
@@ -96,6 +132,13 @@ async function restoreSettings() {
   const withinToday = lastUpdatedPresise > today;
 
   notesTemplate = decodeVariable(notesTemplate);
+
+  // Check if notes template is set to toggle trigger button
+  if (notesTemplate.length > 0) {
+    toggleElementDisplay(".app-trigger-use-template", "show");
+  } else {
+    toggleElementDisplay(".app-trigger-use-template", "hide");
+  }
 
   // Check if automatic reset notes is enabled
   if (resetNotes) {
