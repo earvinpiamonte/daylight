@@ -198,6 +198,10 @@ a:hover {
   font-size: 85%;
 }
 
+.text-normal {
+  font-weight: normal;
+}
+
 .text-primary {
   color: var(--primary);
 }
@@ -208,6 +212,10 @@ a:hover {
 
 .text-right {
   text-align: right;
+}
+
+.display-none {
+  display: none;
 }
 
 .h-100 {
