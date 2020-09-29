@@ -12,7 +12,7 @@ const maxNotesChars = 999;
   loadEventListeners();
 })();
 
-async function loadEventListeners() {
+function loadEventListeners() {
   const $copyToClipboard = document.querySelector(".app-copy-to-clipboard");
   const $notes = document.querySelector("#app-notes");
   const $openSettingsBtn = document.querySelector(".app-open-settings");
