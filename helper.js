@@ -96,11 +96,11 @@ const decodeVariable = (string) => {
 
   const randomNumber = Math.floor(Math.random() * daylightLyrics.length);
   const today = new Date();
-  const firstLoadTime = getDateTime(today);
+  const currentTime = getDateTime(today);
 
   string = string.replaceAll("[current_date]", getCurrentFullDate());
+  string = string.replaceAll("[current_time]", currentTime);
   string = string.replaceAll("[daylight]", daylightLyrics[randomNumber]);
-  string = string.replaceAll("[first_load_time]", firstLoadTime);
 
   return string;
 };
