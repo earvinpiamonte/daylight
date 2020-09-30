@@ -20,6 +20,8 @@ This project is developed and maintained by [@earvinpiamonte](https://twitter.co
 
 Icons made by [Freepik](https://www.flaticon.com/authors/freepik) from [www.flaticon.com](https://www.flaticon.com/).
 
+SVG icons by [Heroicons](https://heroicons.dev/).
+
 <br>
 <br>
 <br>
