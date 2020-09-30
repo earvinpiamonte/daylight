@@ -96,13 +96,36 @@ const decodeVariable = (string) => {
 
   const randomNumber = Math.floor(Math.random() * daylightLyrics.length);
   const today = new Date();
-  const firstLoadTime = getDateTime(today);
+  const currentTime = getDateTime(today);
 
   string = string.replaceAll("[current_date]", getCurrentFullDate());
+  string = string.replaceAll("[current_time]", currentTime);
   string = string.replaceAll("[daylight]", daylightLyrics[randomNumber]);
-  string = string.replaceAll("[first_load_time]", firstLoadTime);
 
   return string;
+};
+
+const downloadAsTextFile = (
+  contents,
+  fileName = "daylight - " + getCurrentFullDate()
+) => {
+  if (contents.length < 1) {
+    return;
+  }
+
+  const element = document.createElement("a");
+  element.setAttribute(
+    "href",
+    "data:text/plain;charset=utf-8," + encodeURIComponent(contents)
+  );
+  element.setAttribute("download", fileName);
+
+  element.style.display = "none";
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
 };
 
 export {
@@ -113,4 +136,5 @@ export {
   closeWindow,
   goBack,
   decodeVariable,
+  downloadAsTextFile,
 };
