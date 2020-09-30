@@ -1,6 +1,10 @@
 /* I don't care if you moved on */
 
-import { copyToClipboard, decodeVariable } from "./helper.js";
+import {
+  copyToClipboard,
+  decodeVariable,
+  downloadAsTextFile,
+} from "./helper.js";
 import { chromeGetData, chromeSetData } from "./chrome.js";
 
 const maxNotesChars = 999;
@@ -16,6 +20,9 @@ function loadEventListeners() {
   const $copyToClipboard = document.querySelector(".app-copy-to-clipboard");
   const $notes = document.querySelector("#app-notes");
   const $openSettingsBtn = document.querySelector(".app-open-settings");
+  const $downloadTextFile = document.querySelector(
+    ".app-download-as-text-file"
+  );
   const $useTemplateBtn = document.querySelector(".app-trigger-use-template");
   const $notesCurrentChars = document.querySelector(
     ".app-notes-current-chars-count"
@@ -55,6 +62,15 @@ function loadEventListeners() {
     if (confirmLoad) {
       loadNotesTemplate();
     }
+  });
+
+  $downloadTextFile.addEventListener("click", () => {
+    if ($notes.value.length < 1) {
+      alert("Your notes are empty. Nothing to download.");
+      return;
+    }
+
+    downloadAsTextFile($notes.value);
   });
 }
 

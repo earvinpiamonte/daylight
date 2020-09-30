@@ -105,6 +105,29 @@ const decodeVariable = (string) => {
   return string;
 };
 
+const downloadAsTextFile = (
+  contents,
+  fileName = "daylight - " + getCurrentFullDate()
+) => {
+  if (contents.length < 1) {
+    return;
+  }
+
+  const element = document.createElement("a");
+  element.setAttribute(
+    "href",
+    "data:text/plain;charset=utf-8," + encodeURIComponent(contents)
+  );
+  element.setAttribute("download", fileName);
+
+  element.style.display = "none";
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
+};
+
 export {
   copyToClipboard,
   getCurrentFullDate,
@@ -113,4 +136,5 @@ export {
   closeWindow,
   goBack,
   decodeVariable,
+  downloadAsTextFile,
 };
