@@ -140,6 +140,10 @@ a:hover {
   text-decoration: underline;
 }
 
+.link-no-decoration:hover {
+  text-decoration: none;
+}
+
 .container {
   max-width: 576px;
   margin-left: auto;
@@ -204,6 +208,10 @@ a:hover {
 
 .text-primary {
   color: var(--primary);
+}
+
+.text-warning {
+  color: var(--warning);
 }
 
 .text-secondary {
@@ -293,4 +301,9 @@ a:hover {
 
 .footer p {
   margin-bottom: 0px;
+}
+
+.icon {
+  width: 1rem;
+  height: auto;
 }
