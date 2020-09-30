@@ -140,6 +140,10 @@ a:hover {
   text-decoration: underline;
 }
 
+.link-no-decoration:hover {
+  text-decoration: none;
+}
+
 .container {
   max-width: 576px;
   margin-left: auto;
@@ -198,8 +202,16 @@ a:hover {
   font-size: 85%;
 }
 
+.text-normal {
+  font-weight: normal;
+}
+
 .text-primary {
   color: var(--primary);
+}
+
+.text-warning {
+  color: var(--warning);
 }
 
 .text-secondary {
@@ -208,6 +220,10 @@ a:hover {
 
 .text-right {
   text-align: right;
+}
+
+.display-none {
+  display: none;
 }
 
 .h-100 {
@@ -285,4 +301,9 @@ a:hover {
 
 .footer p {
   margin-bottom: 0px;
+}
+
+.icon {
+  width: 1rem;
+  height: auto;
 }
