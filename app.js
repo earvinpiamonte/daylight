@@ -82,6 +82,8 @@ async function loadNotesTemplate() {
   if (notesTemplate) {
     $notes.value = decodeVariable(notesTemplate);
 
+    autosize.update($notes);
+
     saveNotes();
 
     console.log("I won't feel a thing");
