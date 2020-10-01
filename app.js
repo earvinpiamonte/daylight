@@ -28,6 +28,9 @@ function loadEventListeners() {
     ".app-notes-current-chars-count"
   );
 
+  const $dialog = document.querySelector("#dialog");
+  const $dialogTrigger = document.querySelector(".app-dialog-trigger");
+
   const saveTimeout = 500;
   let typingTimer;
 
@@ -71,6 +74,10 @@ function loadEventListeners() {
     }
 
     downloadAsTextFile($notes.value);
+  });
+
+  $dialogTrigger.addEventListener("click", () => {
+    $dialog.showModal();
   });
 }
 
