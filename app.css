@@ -92,7 +92,7 @@ button {
 button.primary {
   background-color: var(--primary);
   border-color: var(--primary);
-  color: var(--text-color);
+  color: var(--white);
 }
 
 button.warning {
@@ -334,14 +334,17 @@ dialog {
   max-width: 480px;
   z-index: 999;
   padding: 1rem;
-  border: 1px solid var(--dark);
+  border-width: 1px;
+  border-color: var(--transparent);
+  border-style: solid;
   box-shadow: var(--component-shadow);
-  background-color: var(--white);
+  background-color: var(--component-background);
   border-radius: calc(var(--radius) / 2);
   line-height: 1.5;
+  color: var(--text-color);
 }
 
 dialog::backdrop {
   z-index: 999;
-  background: rgba(0, 0, 0, 0.15);
+  background: rgba(0, 0, 0, 0.65);
 }
