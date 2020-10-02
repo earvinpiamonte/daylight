@@ -1,4 +1,4 @@
-import { goBack } from "./helper.js";
+import { goBack, dialog } from "./helper.js";
 import { chromeGetData, chromeSetData } from "./chrome.js";
 
 const maxNotesChars = 999;
@@ -47,8 +47,13 @@ async function submitSettings() {
   chromeSetData("resetNotes", $resetNotes.checked);
   chromeSetData("enableDarkMode", $darkModeToggle.checked);
 
-  alert("Settings successfully saved.");
-  goBack();
+  dialog({
+    content: "Settings successfully saved.",
+    type: "alert",
+    confirmCallback: () => {
+      goBack();
+    },
+  });
 }
 
 async function restoreSettings() {
