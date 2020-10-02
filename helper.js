@@ -128,6 +128,24 @@ const downloadAsTextFile = (
   document.body.removeChild(element);
 };
 
+const dialog = (options = { content: "", confirmCallback: () => {} }) => {
+  const $dialog = document.querySelector("#dialog");
+  const $dialogBody = document.querySelector("#dialog-body");
+
+  const $dialogConfirm = document.querySelector("#dialog-confirm");
+
+  $dialog.showModal();
+  $dialogBody.innerHTML = options.content;
+
+  $dialogConfirm.addEventListener("click", () => {
+    options.confirmCallback();
+  });
+
+  // Bug - click event fired multiple times
+
+  console.log(options);
+};
+
 export {
   copyToClipboard,
   getCurrentFullDate,
@@ -137,4 +155,5 @@ export {
   goBack,
   decodeVariable,
   downloadAsTextFile,
+  dialog,
 };

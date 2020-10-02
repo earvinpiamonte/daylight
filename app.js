@@ -4,6 +4,7 @@ import {
   copyToClipboard,
   decodeVariable,
   downloadAsTextFile,
+  dialog,
 } from "./helper.js";
 import { chromeGetData, chromeSetData } from "./chrome.js";
 
@@ -77,7 +78,14 @@ function loadEventListeners() {
   });
 
   $dialogTrigger.addEventListener("click", () => {
-    $dialog.showModal();
+    dialog({
+      content: `
+          Great! Your notes have been copied to clipboard. You may now send it anywhere you want.
+        `,
+      confirmCallback: () => {
+        alert("test");
+      },
+    });
   });
 }
 
