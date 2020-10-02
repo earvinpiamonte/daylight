@@ -4,6 +4,7 @@ import {
   copyToClipboard,
   decodeVariable,
   downloadAsTextFile,
+  dialog,
 } from "./helper.js";
 import { chromeGetData, chromeSetData } from "./chrome.js";
 
@@ -34,7 +35,19 @@ function loadEventListeners() {
   autosize($notes);
 
   $copyToClipboard.addEventListener("click", function () {
-    copyToClipboard(document.querySelector("#app-notes"), function () {
+    if ($notes.value.length < 1) {
+      dialog({
+        content:
+          "There's nothing to copy at the moment. Please write something at least.",
+        type: "alert",
+      });
+      return;
+    }
+    copyToClipboard($notes, function () {
+      dialog({
+        content: "Copied, you're all set to send it anywhere you want!",
+        type: "alert",
+      });
       console.log("Copied!");
     });
   });
@@ -55,18 +68,26 @@ function loadEventListeners() {
   $useTemplateBtn.addEventListener("click", (e) => {
     e.preventDefault();
 
-    const confirmLoad = confirm(
-      "Are you sure you want to use your template for your notes now? This will override your current notes."
-    );
+    dialog({
+      content: `
+          Are you sure you want to use your template for your notes now? This will override your current notes.
+      `,
+      confirmCallback: () => {
+        loadNotesTemplate();
 
-    if (confirmLoad) {
-      loadNotesTemplate();
-    }
+        console.log("Template notes loaded.");
+      },
+    });
   });
 
   $downloadTextFile.addEventListener("click", () => {
     if ($notes.value.length < 1) {
-      alert("Your notes are empty. Nothing to download.");
+      dialog({
+        content: `
+          Your notes are empty. Nothing to download.
+        `,
+        type: "alert",
+      });
       return;
     }
 
@@ -81,6 +102,8 @@ async function loadNotesTemplate() {
 
   if (notesTemplate) {
     $notes.value = decodeVariable(notesTemplate);
+
+    autosize.update($notes);
 
     saveNotes();
 
