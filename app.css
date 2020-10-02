@@ -97,13 +97,13 @@ button.primary {
 
 button.warning {
   background-color: var(--warning);
-  border-color: var(--dark);
+  border-color: var(--warning);
   color: var(--dark);
 }
 
 button.secondary {
   background-color: var(--white);
-  border-color: var(--secondary);
+  border-color: var(--light);
   color: var(--dark);
 }
 
