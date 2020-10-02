@@ -128,6 +128,66 @@ const downloadAsTextFile = (
   document.body.removeChild(element);
 };
 
+const dialog = (
+  options = {
+    content: "",
+    type: "alert",
+    confirmCallback: null,
+    cancelCallback: null,
+  }
+) => {
+  const $dialog = document.querySelector("#dialog");
+  const $dialogBody = document.querySelector("#dialog-body");
+
+  const $dialogConfirm = document.querySelector("#dialog-confirm");
+  const $dialogCancel = document.querySelector("#dialog-cancel");
+
+  showElement($dialogCancel);
+
+  if (options.type == "alert") {
+    hideElement($dialogCancel);
+  }
+
+  const confirmHandler = () => {
+    console.log("Confirmed.");
+
+    if (typeof options.confirmCallback == "function") {
+      options.confirmCallback();
+    }
+
+    removeDialogActionsEventListeners();
+  };
+
+  const cancelHandler = () => {
+    console.log("Cancelled.");
+
+    if (typeof options.cancelCallback == "function") {
+      options.cancelCallback();
+    }
+
+    removeDialogActionsEventListeners();
+  };
+
+  const removeDialogActionsEventListeners = () => {
+    $dialogConfirm.removeEventListener("click", confirmHandler, false);
+    $dialogCancel.removeEventListener("click", cancelHandler, false);
+  };
+
+  $dialogBody.innerHTML = options.content;
+  $dialog.showModal();
+
+  $dialogConfirm.addEventListener("click", confirmHandler);
+  $dialogCancel.addEventListener("click", cancelHandler);
+};
+
+const hideElement = ($element) => {
+  $element.style.display = "none";
+};
+
+const showElement = ($element) => {
+  $element.style.display = "";
+};
+
 export {
   copyToClipboard,
   getCurrentFullDate,
@@ -137,4 +197,5 @@ export {
   goBack,
   decodeVariable,
   downloadAsTextFile,
+  dialog,
 };
