@@ -128,22 +128,64 @@ const downloadAsTextFile = (
   document.body.removeChild(element);
 };
 
-const dialog = (options = { content: "", confirmCallback: () => {} }) => {
+const dialog = (
+  options = {
+    content: "",
+    type: "alert",
+    confirmCallback: null,
+    cancelCallback: null,
+  }
+) => {
   const $dialog = document.querySelector("#dialog");
   const $dialogBody = document.querySelector("#dialog-body");
 
   const $dialogConfirm = document.querySelector("#dialog-confirm");
+  const $dialogCancel = document.querySelector("#dialog-cancel");
 
-  $dialog.showModal();
+  showElement($dialogCancel);
+
+  if (options.type == "alert") {
+    hideElement($dialogCancel);
+  }
+
+  const confirmHandler = () => {
+    console.log("Confirmed.");
+
+    if (typeof options.confirmCallback == "function") {
+      options.confirmCallback();
+    }
+
+    removeDialogActionsEventListeners();
+  };
+
+  const cancelHandler = () => {
+    console.log("Cancelled.");
+
+    if (typeof options.cancelCallback == "function") {
+      options.cancelCallback();
+    }
+
+    removeDialogActionsEventListeners();
+  };
+
+  const removeDialogActionsEventListeners = () => {
+    $dialogConfirm.removeEventListener("click", confirmHandler, false);
+    $dialogCancel.removeEventListener("click", cancelHandler, false);
+  };
+
   $dialogBody.innerHTML = options.content;
+  $dialog.showModal();
 
-  $dialogConfirm.addEventListener("click", () => {
-    options.confirmCallback();
-  });
+  $dialogConfirm.addEventListener("click", confirmHandler);
+  $dialogCancel.addEventListener("click", cancelHandler);
+};
 
-  // Bug - click event fired multiple times
+const hideElement = ($element) => {
+  $element.style.display = "none";
+};
 
-  console.log(options);
+const showElement = ($element) => {
+  $element.style.display = "";
 };
 
 export {
