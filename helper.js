@@ -188,6 +188,24 @@ const showElement = ($element) => {
   $element.style.display = "";
 };
 
+const autoResizeTextarea = ($textarea) => {
+  console.log($textarea.scrollHeight);
+  $textarea.setAttribute(
+    `style`,
+    `height: ${$textarea.scrollHeight}px; resize: none;`
+  );
+
+  $textarea.addEventListener(
+    "input",
+    (e) => {
+      const $this = e.target;
+      $this.style.height = `auto`;
+      $this.style.height = `${$this.scrollHeight}px`;
+    },
+    false
+  );
+};
+
 export {
   copyToClipboard,
   getCurrentFullDate,
@@ -198,4 +216,5 @@ export {
   decodeVariable,
   downloadAsTextFile,
   dialog,
+  autoResizeTextarea,
 };
