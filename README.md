@@ -11,7 +11,7 @@ Daylight, stylized as `daylight`, is a Google Chrome browser extension that let'
 
 ## Install
 
-Get the extension at [Chrome Web Store](https://earvinpiamonte.com).
+Get the extension at [Chrome Web Store](https://chrome.google.com/webstore/detail/daylight/acfblhlodbfnocogojghkgnpoellplll).
 
 ## Maintainer
 
