@@ -1,10 +1,10 @@
 {
   "name": "daylight",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "manifest_version": 2,
   "description": "Write down notes directly on the new tab page of your Google Chrome browser.",
   "author": "Noel Earvin Piamonte",
-  "homepage_url": "https://github.com/earvinpiamonte/daylight",
+  "homepage_url": "https://earvinpiamonte.com/daylight",
   "icons": {
     "16": "images/icon16.png",
     "32": "images/icon32.png",
