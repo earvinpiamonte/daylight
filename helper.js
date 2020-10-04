@@ -188,22 +188,18 @@ const showElement = ($element) => {
   $element.style.display = "";
 };
 
-const autoResizeTextarea = ($textarea) => {
-  console.log($textarea.scrollHeight);
-  $textarea.setAttribute(
-    `style`,
-    `height: ${$textarea.scrollHeight}px; resize: none;`
-  );
+const resizeTextareaHandler = (e) => {
+  const $this = e.target ?? e;
 
-  $textarea.addEventListener(
-    "input",
-    (e) => {
-      const $this = e.target;
-      $this.style.height = `auto`;
-      $this.style.height = `${$this.scrollHeight}px`;
-    },
-    false
-  );
+  $this.style.height = `auto`;
+  $this.style.height = `${$this.scrollHeight}px`;
+  $this.style.resize = `none`;
+};
+
+const autoResizeTextarea = ($textarea) => {
+  resizeTextareaHandler($textarea);
+
+  $textarea.addEventListener("input", resizeTextareaHandler, false);
 };
 
 export {
