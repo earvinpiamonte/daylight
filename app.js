@@ -70,7 +70,7 @@ function loadEventListeners() {
 
     dialog({
       content: `
-          Are you sure you want to use your template for your notes now? This will override your current notes.
+          Are you sure you want to use your Notes template now? This will override your current notes.
       `,
       confirmCallback: () => {
         loadNotesTemplate();
