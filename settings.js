@@ -48,7 +48,7 @@ async function submitSettings() {
   chromeSetData("enableDarkMode", $darkModeToggle.checked);
 
   dialog({
-    content: "Your daylight settings have been saved.",
+    content: "Your settings have been saved.",
     type: "alert",
     confirmCallback: () => {
       goBack();
