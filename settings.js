@@ -1,4 +1,4 @@
-import { goBack, dialog } from "./helper.js";
+import { goBack, dialog, autoResizeTextarea } from "./helper.js";
 import { chromeGetData, chromeSetData } from "./chrome.js";
 
 const maxNotesChars = 999;
@@ -19,7 +19,7 @@ function loadEventListeners() {
   const $darkModeToggle = document.querySelector("#app-dark-mode");
   const $html = document.querySelector("html");
 
-  autosize($notesTemplate);
+  autoResizeTextarea($notesTemplate);
 
   $submitSettingsBtn.addEventListener("click", submitSettings);
 
@@ -48,7 +48,7 @@ async function submitSettings() {
   chromeSetData("enableDarkMode", $darkModeToggle.checked);
 
   dialog({
-    content: "Settings successfully saved.",
+    content: "Your settings have been saved.",
     type: "alert",
     confirmCallback: () => {
       goBack();
@@ -75,7 +75,7 @@ async function restoreSettings() {
 
   $notesCurrentChars.innerHTML = maxNotesChars - $notesTemplate.value.length;
 
-  autosize.update($notesTemplate);
+  autoResizeTextarea($notesTemplate);
 
   // If dark mode is enabled
   $html.dataset.theme = enableDarkMode ? "dark" : "light";

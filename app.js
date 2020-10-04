@@ -5,6 +5,7 @@ import {
   decodeVariable,
   downloadAsTextFile,
   dialog,
+  autoResizeTextarea,
 } from "./helper.js";
 import { chromeGetData, chromeSetData } from "./chrome.js";
 
@@ -32,8 +33,6 @@ function loadEventListeners() {
   const saveTimeout = 500;
   let typingTimer;
 
-  autosize($notes);
-
   $copyToClipboard.addEventListener("click", function () {
     if ($notes.value.length < 1) {
       dialog({
@@ -45,7 +44,8 @@ function loadEventListeners() {
     }
     copyToClipboard($notes, function () {
       dialog({
-        content: "Copied, you're all set to send it anywhere you want!",
+        content:
+          "Copied to clipboard, you're all set to send it anywhere you want.",
         type: "alert",
       });
       console.log("Copied!");
@@ -70,7 +70,7 @@ function loadEventListeners() {
 
     dialog({
       content: `
-          Are you sure you want to use your template for your notes now? This will override your current notes.
+          Are you sure you want to use your Notes template now? This will override your current notes.
       `,
       confirmCallback: () => {
         loadNotesTemplate();
@@ -103,8 +103,7 @@ async function loadNotesTemplate() {
   if (notesTemplate) {
     $notes.value = decodeVariable(notesTemplate);
 
-    autosize.update($notes);
-
+    autoResizeTextarea($notes);
     saveNotes();
 
     console.log("I won't feel a thing");
@@ -188,7 +187,7 @@ async function restoreSettings() {
       $notes.value = notesTemplate;
       $notesCurrentChars.innerHTML = maxNotesChars - $notes.value.length;
 
-      autosize.update($notes);
+      autoResizeTextarea($notes);
       saveNotes(); // Save currently loaded template as notes
       return;
     }
@@ -197,7 +196,7 @@ async function restoreSettings() {
     $notes.value = notes;
     $notesCurrentChars.innerHTML = maxNotesChars - $notes.value.length;
 
-    autosize.update($notes);
+    autoResizeTextarea($notes);
     return;
   }
 
@@ -207,5 +206,5 @@ async function restoreSettings() {
   $notes.value = notes;
   $notesCurrentChars.innerHTML = maxNotesChars - $notes.value.length;
 
-  autosize.update($notes);
+  autoResizeTextarea($notes);
 }
