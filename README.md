@@ -1,12 +1,13 @@
 # daylight
 
-Write down notes directly on the new tab page of your Google Chrome browser.
+Daylight, stylized as `daylight`, is a Google Chrome browser extension that let's you write down notes directly on the new tab page.
 
-## Other features
+## Features
 
-- opt in to automatically reset your notes from your template (resets to the next midnight)
-- set up daily notes template
-- easily copy your notes for the day with a copy to clipboard button and send it anywhere
+- Opt in to automatically reset your notes from your template (resets at midnight)
+- Easily copy your notes for the day with a copy to clipboard button and send it anywhere
+- Download current notes as text file
+- Dark mode? Oh You're dang right
 
 ## Install
 
