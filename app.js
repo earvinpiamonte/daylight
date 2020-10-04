@@ -44,7 +44,8 @@ function loadEventListeners() {
     }
     copyToClipboard($notes, function () {
       dialog({
-        content: "Copied, you're all set to send it anywhere you want!",
+        content:
+          "Copied to clipboard, you're all set to send it anywhere you want.",
         type: "alert",
       });
       console.log("Copied!");
