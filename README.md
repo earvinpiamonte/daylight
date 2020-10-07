@@ -7,11 +7,24 @@ Daylight, stylized as `daylight`, is a Google Chrome browser extension that let'
 - Opt in to automatically reset your notes from your template (resets at midnight)
 - Easily copy your notes for the day with a copy to clipboard button and send it anywhere
 - Download current notes as text file
-- Dark mode? Oh You're dang right
+- Dark mode? Oh You're darn right
 
-## Install
+## Add to Chrome
 
-Get the extension at [Chrome Web Store](https://chrome.google.com/webstore/detail/daylight/acfblhlodbfnocogojghkgnpoellplll).
+### Official release
+
+Get `daylight` officially on [Chrome Web Store](https://chrome.google.com/webstore/detail/daylight/acfblhlodbfnocogojghkgnpoellplll).
+
+### Developer mode
+
+You may download a version of this extension on the [releases](/releases) page.
+
+1. Download any released version.
+2. Extract files to a directory.
+3. Open Google Chrome and type `chrome://extensions` on the address bar and press enter.
+4. On the top right side of the Extensions page, enable `Developer mode`.
+5. Click on `Load unpacked` button and select `daylight/` directory from the extracted release.
+6. Open a new tab and enjoy!
 
 ## Maintainer
 
