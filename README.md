@@ -17,7 +17,7 @@ Get `daylight` officially on [Chrome Web Store](https://chrome.google.com/websto
 
 ### Developer mode
 
-You may download a version of this extension on the [releases](/releases) page.
+You may download a version of this extension on the [releases](https://github.com/earvinpiamonte/daylight/releases) page.
 
 1. Download any released version.
 2. Extract files to a directory.
