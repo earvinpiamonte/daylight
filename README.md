@@ -2,6 +2,8 @@
 
 Daylight, stylized as `daylight`, is a Google Chrome browser extension that let's you write down notes directly on the new tab page.
 
+![alt text](images/daylight-ss-light-1.png "Twitter web screenshot 1")
+
 ## Features
 
 - Opt in to automatically reset your notes from your template (resets at midnight)
