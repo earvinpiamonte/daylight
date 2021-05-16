@@ -329,6 +329,7 @@ a:hover {
 }
 
 dialog {
+  top: 30vh;
   margin: 0 auto;
   min-width: 480px;
   max-width: 480px;
