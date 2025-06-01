@@ -2,7 +2,7 @@ const copyToClipboard = async ($selector, callback) => {
   try {
     await navigator.clipboard.writeText($selector.value);
 
-    if (typeof callback == "function") {
+    if (typeof callback === "function") {
       callback();
     }
   } catch (err) {
