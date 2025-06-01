@@ -42,14 +42,26 @@ function loadEventListeners() {
       });
       return;
     }
-    await copyToClipboard($notes, function () {
+
+    try {
+      await copyToClipboard($notes, function () {
+        dialog({
+          content:
+            "Copied to clipboard, you're all set to send it anywhere you want.",
+          type: "alert",
+        });
+
+        console.log("Copied!");
+      });
+    } catch (error) {
+
+      console.error("Failed to copy to clipboard:", error);
+
       dialog({
-        content:
-          "Copied to clipboard, you're all set to send it anywhere you want.",
+        content: "Failed to copy to clipboard. Please try again.",
         type: "alert",
       });
-      console.log("Copied!");
-    });
+    }
   });
 
   $notes.addEventListener("input", () => {
