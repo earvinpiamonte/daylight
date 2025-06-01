@@ -33,7 +33,7 @@ function loadEventListeners() {
   const saveTimeout = 500;
   let typingTimer;
 
-  $copyToClipboard.addEventListener("click", function () {
+  $copyToClipboard.addEventListener("click", async function () {
     if ($notes.value.length < 1) {
       dialog({
         content:
@@ -42,7 +42,7 @@ function loadEventListeners() {
       });
       return;
     }
-    copyToClipboard($notes, function () {
+    await copyToClipboard($notes, function () {
       dialog({
         content:
           "Copied to clipboard, you're all set to send it anywhere you want.",
