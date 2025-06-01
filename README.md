@@ -30,7 +30,7 @@ You may download a version of this extension on the [releases](https://github.co
 
 ## Maintainer
 
-This project is developed and maintained by [@earvinpiamonte](https://twitter.com/earvinpiamonte).
+This project is developed and maintained by [www.earvinpiamonte.com](https://www.earvinpiamonte.com).
 
 ## Credits
 
