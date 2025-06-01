@@ -1,7 +1,7 @@
 {
   "name": "daylight",
-  "version": "1.0.1",
-  "manifest_version": 2,
+  "version": "1.0.2",
+  "manifest_version": 3,
   "description": "Write down notes directly on the new tab page of your Google Chrome browser.",
   "author": "Noel Earvin Piamonte",
   "homepage_url": "https://earvinpiamonte.com/daylight",
@@ -17,5 +17,5 @@
   "chrome_url_overrides": {
     "newtab": "app.html"
   },
-  "permissions": ["storage", "activeTab"]
+  "permissions": ["storage"]
 }
