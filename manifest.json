@@ -1,6 +1,6 @@
 {
   "name": "daylight",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "manifest_version": 3,
   "description": "Write down notes directly on the new tab page of your Google Chrome browser.",
   "author": "Noel Earvin Piamonte",
