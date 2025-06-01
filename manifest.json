@@ -17,5 +17,5 @@
   "chrome_url_overrides": {
     "newtab": "app.html"
   },
-  "permissions": ["storage", "activeTab"]
+  "permissions": ["storage"]
 }
