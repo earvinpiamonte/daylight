@@ -1,12 +1,18 @@
-const copyToClipboard = ($selector, callback) => {
-  $selector.select();
+const copyToClipboard = async ($selector, callback) => {
+  try {
+    await navigator.clipboard.writeText($selector.value);
 
-  document.execCommand("copy");
+    if (typeof callback === "function") {
+      callback();
+    }
+  } catch (err) {
+    $selector.select();
+    document.execCommand("copy");
+    $selector.blur();
 
-  $selector.blur();
-
-  if (typeof callback == "function") {
-    callback();
+    if (typeof callback == "function") {
+      callback();
+    }
   }
 };
 

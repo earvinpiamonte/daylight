@@ -33,7 +33,7 @@ function loadEventListeners() {
   const saveTimeout = 500;
   let typingTimer;
 
-  $copyToClipboard.addEventListener("click", function () {
+  $copyToClipboard.addEventListener("click", async function () {
     if ($notes.value.length < 1) {
       dialog({
         content:
@@ -42,14 +42,26 @@ function loadEventListeners() {
       });
       return;
     }
-    copyToClipboard($notes, function () {
+
+    try {
+      await copyToClipboard($notes, function () {
+        dialog({
+          content:
+            "Copied to clipboard, you're all set to send it anywhere you want.",
+          type: "alert",
+        });
+
+        console.log("Copied!");
+      });
+    } catch (error) {
+
+      console.error("Failed to copy to clipboard:", error);
+
       dialog({
-        content:
-          "Copied to clipboard, you're all set to send it anywhere you want.",
+        content: "Failed to copy to clipboard. Please try again.",
         type: "alert",
       });
-      console.log("Copied!");
-    });
+    }
   });
 
   $notes.addEventListener("input", () => {
