@@ -209,10 +209,10 @@ const autoResizeTextarea = ($textarea) => {
 };
 
 const setCopyrightYear = () => {
-  const $yearSpan = document.querySelector("#copyright-year");
+  const $copyrightYear = document.querySelector("#copyright-year");
 
-  if ($yearSpan) {
-    $yearSpan.textContent = new Date().getFullYear();
+  if ($copyrightYear) {
+    $copyrightYear.textContent = new Date().getFullYear();
   }
 };
 
