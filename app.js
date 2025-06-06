@@ -6,6 +6,7 @@ import {
   downloadAsTextFile,
   dialog,
   autoResizeTextarea,
+  setCopyrightYear,
 } from "./helper.js";
 import { chromeGetData, chromeSetData } from "./chrome.js";
 
@@ -220,11 +221,4 @@ async function restoreSettings() {
   $notesCurrentChars.innerHTML = maxNotesChars - $notes.value.length;
 
   autoResizeTextarea($notes);
-}
-
-function setCopyrightYear() {
-  const yearSpan = document.getElementById("copyright-year");
-  if (yearSpan) {
-    yearSpan.textContent = new Date().getFullYear();
-  }
 }

@@ -1,4 +1,4 @@
-import { goBack, dialog, autoResizeTextarea } from "./helper.js";
+import { goBack, dialog, autoResizeTextarea, setCopyrightYear } from "./helper.js";
 import { chromeGetData, chromeSetData } from "./chrome.js";
 
 const maxNotesChars = 999;
@@ -80,11 +80,4 @@ async function restoreSettings() {
 
   // If dark mode is enabled
   $html.dataset.theme = enableDarkMode ? "dark" : "light";
-}
-
-function setCopyrightYear() {
-  const yearSpan = document.getElementById("copyright-year");
-  if (yearSpan) {
-    yearSpan.textContent = new Date().getFullYear();
-  }
 }
