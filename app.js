@@ -6,6 +6,7 @@ import {
   downloadAsTextFile,
   dialog,
   autoResizeTextarea,
+  setCopyrightYear,
 } from "./helper.js";
 import { chromeGetData, chromeSetData } from "./chrome.js";
 
@@ -16,6 +17,7 @@ const maxNotesChars = 999;
 
   restoreSettings();
   loadEventListeners();
+  setCopyrightYear();
 })();
 
 function loadEventListeners() {

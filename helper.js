@@ -208,6 +208,14 @@ const autoResizeTextarea = ($textarea) => {
   $textarea.addEventListener("input", resizeTextareaHandler, false);
 };
 
+const setCopyrightYear = () => {
+  const $copyrightYear = document.querySelector("#copyright-year");
+
+  if ($copyrightYear) {
+    $copyrightYear.textContent = new Date().getFullYear();
+  }
+};
+
 export {
   copyToClipboard,
   getCurrentFullDate,
@@ -219,4 +227,5 @@ export {
   downloadAsTextFile,
   dialog,
   autoResizeTextarea,
+  setCopyrightYear,
 };

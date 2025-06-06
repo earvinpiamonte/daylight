@@ -1,4 +1,4 @@
-import { goBack, dialog, autoResizeTextarea } from "./helper.js";
+import { goBack, dialog, autoResizeTextarea, setCopyrightYear } from "./helper.js";
 import { chromeGetData, chromeSetData } from "./chrome.js";
 
 const maxNotesChars = 999;
@@ -6,6 +6,7 @@ const maxNotesChars = 999;
 (function () {
   restoreSettings();
   loadEventListeners();
+  setCopyrightYear();
 })();
 
 function loadEventListeners() {
