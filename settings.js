@@ -6,6 +6,7 @@ const maxNotesChars = 999;
 (function () {
   restoreSettings();
   loadEventListeners();
+  setCopyrightYear();
 })();
 
 function loadEventListeners() {
@@ -79,4 +80,11 @@ async function restoreSettings() {
 
   // If dark mode is enabled
   $html.dataset.theme = enableDarkMode ? "dark" : "light";
+}
+
+function setCopyrightYear() {
+  const yearSpan = document.getElementById("copyright-year");
+  if (yearSpan) {
+    yearSpan.textContent = new Date().getFullYear();
+  }
 }
