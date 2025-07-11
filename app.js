@@ -8,9 +8,9 @@ import {
   autoResizeTextarea,
   setCopyrightYear,
 } from "./helper.js";
-import { chromeGetData, chromeSetData } from "./chrome.js";
+import { getChromeData, setChromeData } from "./chrome.js";
 
-const maxNotesChars = 999;
+import { MAX_NOTES_CHARS, SAVE_TIMEOUT, SETTINGS_KEY } from "./config.js";
 
 (function () {
   console.info("I'm not laying in bed with a fucked up head");
@@ -25,14 +25,13 @@ function loadEventListeners() {
   const $notes = document.querySelector("#app-notes");
   const $openSettingsBtn = document.querySelector(".app-open-settings");
   const $downloadTextFile = document.querySelector(
-    ".app-download-as-text-file"
+    ".app-download-as-text-file",
   );
   const $useTemplateBtn = document.querySelector(".app-trigger-use-template");
   const $notesCurrentChars = document.querySelector(
-    ".app-notes-current-chars-count"
+    ".app-notes-current-chars-count",
   );
 
-  const saveTimeout = 500;
   let typingTimer;
 
   $copyToClipboard.addEventListener("click", async function () {
@@ -56,7 +55,6 @@ function loadEventListeners() {
         console.log("Copied!");
       });
     } catch (error) {
-
       console.error("Failed to copy to clipboard:", error);
 
       dialog({
@@ -68,9 +66,9 @@ function loadEventListeners() {
 
   $notes.addEventListener("input", () => {
     clearInterval(typingTimer);
-    typingTimer = setTimeout(saveNotes, saveTimeout);
+    typingTimer = setTimeout(saveNotes, SAVE_TIMEOUT);
 
-    $notesCurrentChars.innerHTML = maxNotesChars - $notes.value.length;
+    $notesCurrentChars.innerHTML = MAX_NOTES_CHARS - $notes.value.length;
   });
 
   $openSettingsBtn.addEventListener("click", () => {
@@ -112,7 +110,7 @@ function loadEventListeners() {
 async function loadNotesTemplate() {
   const $notes = document.querySelector("#app-notes");
 
-  const notesTemplate = await chromeGetData("notesTemplate");
+  const notesTemplate = await getChromeData(SETTINGS_KEY.NOTES_TEMPLATE);
 
   if (notesTemplate) {
     $notes.value = decodeVariable(notesTemplate);
@@ -128,15 +126,15 @@ async function saveNotes() {
   const $notes = document.querySelector("#app-notes");
 
   // Do not save if notes length is greater than maxNotesChars
-  if ($notes.value.length > maxNotesChars) {
+  if ($notes.value.length > MAX_NOTES_CHARS) {
     console.log("I'm not laying in bed with a fucked up");
     return;
   }
 
   let now = new Date();
 
-  const notesSaved = await chromeSetData("notes", $notes.value);
-  const lastUpdated = await chromeSetData("lastUpdated", now);
+  const notesSaved = await setChromeData(SETTINGS_KEY.NOTES, $notes.value);
+  const lastUpdated = await setChromeData(SETTINGS_KEY.LAST_UPDATED, now);
 
   if (notesSaved && lastUpdated) {
     console.log("Notes saved.");
@@ -168,11 +166,14 @@ async function restoreSettings() {
 
   let today = new Date();
 
-  const resetNotes = await chromeGetData("resetNotes", false);
-  const lastUpdated = await chromeGetData("lastUpdated", today);
-  let notesTemplate = await chromeGetData("notesTemplate", "");
-  const notes = await chromeGetData("notes", "");
-  const enableDarkMode = await chromeGetData("enableDarkMode", false);
+  const resetNotes = await getChromeData(SETTINGS_KEY.RESET_NOTES, false);
+  const lastUpdated = await getChromeData(SETTINGS_KEY.LAST_UPDATED, today);
+  let notesTemplate = await getChromeData(SETTINGS_KEY.NOTES_TEMPLATE, "");
+  const notes = await getChromeData(SETTINGS_KEY.NOTES, "");
+  const enableDarkMode = await getChromeData(
+    SETTINGS_KEY.ENABLE_DARK_MODE,
+    false,
+  );
 
   // If dark mode is enabled
   $html.dataset.theme = enableDarkMode ? "dark" : "light";
@@ -199,7 +200,7 @@ async function restoreSettings() {
     // If last updated is not within today -> load template
     if (!withinToday) {
       $notes.value = notesTemplate;
-      $notesCurrentChars.innerHTML = maxNotesChars - $notes.value.length;
+      $notesCurrentChars.innerHTML = MAX_NOTES_CHARS - $notes.value.length;
 
       autoResizeTextarea($notes);
       saveNotes(); // Save currently loaded template as notes
@@ -208,7 +209,7 @@ async function restoreSettings() {
 
     // Else if last updated is within today -> load recently saved notes
     $notes.value = notes;
-    $notesCurrentChars.innerHTML = maxNotesChars - $notes.value.length;
+    $notesCurrentChars.innerHTML = MAX_NOTES_CHARS - $notes.value.length;
 
     autoResizeTextarea($notes);
     return;
@@ -218,7 +219,7 @@ async function restoreSettings() {
 
   // If automatic reset of notes is disabled -> load recently saved notes
   $notes.value = notes;
-  $notesCurrentChars.innerHTML = maxNotesChars - $notes.value.length;
+  $notesCurrentChars.innerHTML = MAX_NOTES_CHARS - $notes.value.length;
 
   autoResizeTextarea($notes);
 }

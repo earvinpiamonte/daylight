@@ -1,7 +1,11 @@
-import { goBack, dialog, autoResizeTextarea, setCopyrightYear } from "./helper.js";
-import { chromeGetData, chromeSetData } from "./chrome.js";
-
-const maxNotesChars = 999;
+import {
+  goBack,
+  dialog,
+  autoResizeTextarea,
+  setCopyrightYear,
+} from "./helper.js";
+import { getChromeData, setChromeData } from "./chrome.js";
+import { MAX_NOTES_CHARS, SETTINGS_KEY } from "./config.js";
 
 (function () {
   restoreSettings();
@@ -25,7 +29,7 @@ function loadEventListeners() {
   $submitSettingsBtn.addEventListener("click", submitSettings);
 
   $notesTemplate.addEventListener("input", () => {
-    $notesCurrentChars.innerHTML = maxNotesChars - $notesTemplate.value.length;
+    $notesCurrentChars.innerHTML = MAX_NOTES_CHARS - $notesTemplate.value.length;
   });
 
   $darkModeToggle.addEventListener("input", () => {
@@ -38,15 +42,15 @@ async function submitSettings() {
   const $resetNotes = document.querySelector("#app-reset-notes");
   const $darkModeToggle = document.querySelector("#app-dark-mode");
 
-  // Get only 999 characters from notes before save
-  if ($notesTemplate.value.length > maxNotesChars) {
+  // Get only MAX_NOTES_CHARS characters from notes before save
+  if ($notesTemplate.value.length > MAX_NOTES_CHARS) {
     console.log("I'm not laying in bed with a fucked up");
-    $notesTemplate.value = $notesTemplate.value.substring(0, maxNotesChars);
+    $notesTemplate.value = $notesTemplate.value.substring(0, MAX_NOTES_CHARS);
   }
 
-  chromeSetData("notesTemplate", $notesTemplate.value);
-  chromeSetData("resetNotes", $resetNotes.checked);
-  chromeSetData("enableDarkMode", $darkModeToggle.checked);
+  setChromeData(SETTINGS_KEY.NOTES_TEMPLATE, $notesTemplate.value);
+  setChromeData(SETTINGS_KEY.RESET_NOTES, $resetNotes.checked);
+  setChromeData(SETTINGS_KEY.ENABLE_DARK_MODE, $darkModeToggle.checked);
 
   dialog({
     content: "Your settings have been saved.",
@@ -63,18 +67,18 @@ async function restoreSettings() {
   const $darkModeToggle = document.querySelector("#app-dark-mode");
   const $html = document.querySelector("html");
   const $notesCurrentChars = document.querySelector(
-    ".app-notes-current-chars-count"
+    ".app-notes-current-chars-count",
   );
 
-  const notesTemplate = await chromeGetData("notesTemplate");
-  const resetNotes = await chromeGetData("resetNotes");
-  const enableDarkMode = await chromeGetData("enableDarkMode");
+  const notesTemplate = await getChromeData(SETTINGS_KEY.NOTES_TEMPLATE);
+  const resetNotes = await getChromeData(SETTINGS_KEY.RESET_NOTES);
+  const enableDarkMode = await getChromeData(SETTINGS_KEY.ENABLE_DARK_MODE);
 
   $notesTemplate.value = notesTemplate;
   $resetNotes.checked = resetNotes;
   $darkModeToggle.checked = enableDarkMode;
 
-  $notesCurrentChars.innerHTML = maxNotesChars - $notesTemplate.value.length;
+  $notesCurrentChars.innerHTML = MAX_NOTES_CHARS - $notesTemplate.value.length;
 
   autoResizeTextarea($notesTemplate);
 
